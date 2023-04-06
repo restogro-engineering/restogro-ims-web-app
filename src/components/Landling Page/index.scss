@@ -1,0 +1,16 @@
+.vendor-container {
+    .create-vendor-button {
+        display: flex;
+        justify-content: end;
+    }
+    .edit-icon {
+        display: flex;
+        justify-content: center;
+    }
+    .vendor-table {
+        margin-top: 25px;
+    }
+    .vendor-table-row.si-row {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

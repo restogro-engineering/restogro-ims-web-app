@@ -1,0 +1,59 @@
+@import "../../styles/responsive.scss";
+@import "../../styles/variables.scss";
+.si-table-container {
+  overflow: hidden;
+  .si-header {
+    .si-row {
+      display: grid;
+      justify-items: center;
+      background: #008952;
+      border: 1px solid #e1e7ff;
+      box-sizing: border-box;
+      padding: 1em;
+      color: white;
+      align-items: center;
+      @include respond-to("small") {
+        padding: 0px 10px;
+      }
+    }
+  }
+  .si-body {
+    max-height: 60vh;
+    overflow: auto;
+    .si-row {
+      display: grid;
+      justify-items: center;
+      border: 1px solid #e1e7ff;
+      box-sizing: border-box;
+      align-items: center;
+      word-break: break-all;
+      @include respond-to("small") {
+        padding: 0px 10px;
+      }
+      .si-cell-mobile {
+        font-family: ProximaNovaAltLight-Regular;
+        font-weight: 400;
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+    }
+
+    .clickable {
+      cursor: pointer;
+      color: #008952;
+    }
+    .no-records {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+  }
+  .si-pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px;
+    .css-ug67gd-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+      border-radius: 50%;
+    }
+  }
+}
