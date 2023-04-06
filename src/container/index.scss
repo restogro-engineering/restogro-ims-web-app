@@ -1,0 +1,31 @@
+@import "../styles/responsive.scss";
+@import "../styles/variables.scss";
+
+.main-container {
+  background-color: $bg-main;
+  flex-direction: column;
+  display: flex;
+  @include respond-to("small") {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+  }
+  .main-left-container {
+    background-color: #008952;
+  }
+  .main-right-container {
+    background-color: white;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    height: 100vh;
+    .content-div {
+      display: flex;
+      margin-top: 1em;
+      flex-direction: column;
+      justify-content: space-between;
+      height: -webkit-fill-available;
+    }
+  }
+}

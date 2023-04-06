@@ -1,0 +1,76 @@
+@import "./responsive.scss";
+@import "./variables.scss";
+@font-face {
+  font-family: "ProximaNovaAltLight-Regular";
+  src: url("../resources/fonts/ProximaNovaAltLight.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "ProximaNova-Bold";
+  src: url("../resources/fonts/ProximaNovaFont.otf") format("truetype");
+}
+
+body {
+  font-family: "ProximaNovaAltLight-Regular";
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  font-size: small;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden !important;
+}
+.error-msg {
+  color: red;
+  margin-top: 10px;
+  display: inline-block;
+}
+.si-hide-mobile {
+  @include respond-to("small") {
+    display: none !important;
+  }
+}
+.si-hide-web {
+  display: none !important;
+  @include respond-to("small") {
+    display: inline-block !important;
+  }
+}
+
+.s-heading {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0.1px;
+  color: #373f41;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.css-1s2u09g-control {
+  padding: 0.5em !important;
+}
+.MuiGrid-container {
+  justify-content: flex-start;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: $bg-linear-blue;
+  border-radius: 10px;
+}
+.MuiButton-outlinedPrimary {
+  color: #008952 !important;
+  border-color: #008952 !important;
+}

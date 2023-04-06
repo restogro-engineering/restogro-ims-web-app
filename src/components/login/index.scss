@@ -1,0 +1,67 @@
+@import "../../styles/responsive.scss";
+@import "../../styles/variables.scss";
+
+.login-container {
+  position: relative;
+  max-width: 1440px;
+  margin: auto;
+  display: flex;
+  @include respond-to(small) {
+    flex-direction: column;
+  }
+  .left {
+    width: 50%;
+    height: 100vh;
+    background: $bg-linear-blue;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include respond-to(small) {
+      width: 100%;
+      height: 30vh;
+    }
+    .img {
+      object-fit: contain;
+      height: inherit;
+      overflow: hidden;
+    }
+  }
+
+  .right {
+    width: 50%;
+    height: 100vh;
+    background: $bg-main;
+    display: flex;
+    align-items: center;
+    @include respond-to(small) {
+      width: 100%;
+      height: fit-content;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      grid-gap: 20px;
+      width: 420px;
+      margin: auto;
+      @include respond-to(small) {
+        width: auto;
+      }
+      .title {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 40px;
+        letter-spacing: 0.1px;
+        color: #373f41;
+      }
+    }
+  }
+  .BellcorpStudioLogo {
+    position: absolute;
+    right: 0;
+  }
+}
