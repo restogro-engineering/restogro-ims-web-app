@@ -18,6 +18,9 @@ export const REST_URLS = {
   CREATE_PURCHASE_ORDER: `${service}purchase-order`,
   QUERY_PURCHASE_ORDERS: `${service}purchase-order`,
   // CATEGORY_LIST_BY_VENDOR_ITEM_MASTER:`${service}category`
+  CATEGORY: `${service}category`,
+  LIST_PARENT_CATEGORY: `${service}category/get-parent-categories`,
+  UNIT: `${service}unit`,
 };
 
 // export const HOSTNAME = "https://dev-api.mysubway.in";

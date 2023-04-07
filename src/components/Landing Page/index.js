@@ -4,6 +4,9 @@ import { MainTabContainer, TabPanel } from "../../core/tabs";
 import Item from "./Item"
 import PurchaseOrder from "./Purchase Order";
 import Vendor from "./Vendor";
+import Category from "../category";
+import Recipe from "../recipe";
+import Unit from "../unit";
 const LandingPage = () => {
   const [value, setValue] = useState(0);
   const labels = [
@@ -11,7 +14,7 @@ const LandingPage = () => {
     "Item",
     "Purchase Order",
     "Category",
-    "Receipe",
+    "Recipe",
     "Unit",
   ];
   return (
@@ -31,6 +34,15 @@ const LandingPage = () => {
         </TabPanel>
         <TabPanel value={value} index={2}>
           <PurchaseOrder />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <Category />
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          <Recipe />
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          <Unit />
         </TabPanel>
       </div>
     </div>

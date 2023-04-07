@@ -62,9 +62,9 @@ const Vendor = () => {
       });
   };
 
-  useEffect(() => {
-    getVendorData(filters);
-  }, [filters]);
+  // useEffect(() => {
+  //   getVendorData(filters);
+  // }, [filters]);
   return (
     <div className="vendor-container">
       <div className="create-vendor-button">

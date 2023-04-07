@@ -4,10 +4,10 @@ export const Theme = {
   },
   palette: {
     primary: {
-      main: "#008952",
+      main: "#1756f3",
     },
     secondary: {
-      main: "#db1102",
+      main: "#051d5b",
     },
     light: {
       main: "white",
@@ -16,17 +16,17 @@ export const Theme = {
   overrides: {
     MuiButton: {
       root: {
-        color: "#008952",
+        color: "#1756f3",
       },
       containedPrimary: {
-        color: "#008952",
+        color: "#1756f3",
       },
       outlinedPrimary: {
-        color: "#008952",
-        border: "#008952",
+        color: "#1756f3",
+        border: "#1756f3",
       },
       text: {
-        color: "#008952",
+        color: "#051d5b",
       },
     },
     MuiListItemIcon: {
@@ -47,7 +47,7 @@ export const unprotected_route_theme = {
   },
   palette: {
     primary: {
-      main: "#008a52",
+      main: "#051d5b",
     },
   },
   overrides: {
@@ -59,7 +59,7 @@ export const unprotected_route_theme = {
         color: "#fff",
       },
       text: {
-        color: "#008a52",
+        color: "#051d5b",
       },
     },
     MuiListItemIcon: {

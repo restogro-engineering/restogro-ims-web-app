@@ -1,11 +1,11 @@
 export const setOfflineData = (key, data) => {
   if (data !== "" && data !== null && data !== undefined) {
-    localStorage.setItem(`subwaylead:${key}`, JSON.stringify(data));
+    localStorage.setItem(`IMS:${key}`, JSON.stringify(data));
   }
 };
 
 export const getOfflineData = (key) => {
-  const data = localStorage.getItem(`subwaylead:${key}`);
+  const data = localStorage.getItem(`IMS:${key}`);
   if (data !== "" && data !== null && data !== undefined) {
     return JSON.parse(data);
   } else {
@@ -14,7 +14,7 @@ export const getOfflineData = (key) => {
 };
 
 export const clearOfflineData = (key) => {
-  localStorage.removeItem(`subwaylead:${key}`);
+  localStorage.removeItem(`IMS:${key}`);
 };
 
 export const clearSpidleOfflineData = (startsWith) => {
