@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import { HOSTNAME, REST_URLS } from "../../../../utils/endpoints";
-import { HTTP_METHODS, invokeApi } from "../../../../utils/http-service";
+import { HOSTNAME, REST_URLS } from "../../../utils/endpoints";
+import { HTTP_METHODS, invokeApi } from "../../../utils/http-service";
 import { getPurchaseOrderPayload } from "./helper-2";
 export const getVendorList = (setDataFunc) => {
   invokeApi(

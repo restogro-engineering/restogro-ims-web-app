@@ -1,4 +1,4 @@
-import CustomModal from "../../../core/modal";
+import CustomModal from "../../core/modal";
 import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { useEffect, useState } from "react";

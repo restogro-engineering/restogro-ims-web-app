@@ -1,6 +1,5 @@
-import { getKeyMap } from "../../../../utils/misc";
+import { getKeyMap } from "../../../utils/misc";
 import {
-  getVendorList,
   getItemListByCategory,
   getCategoriesListByVendor,
 } from "./apis";

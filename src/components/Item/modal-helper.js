@@ -1,6 +1,6 @@
-import { HOSTNAME, REST_URLS } from "../../../utils/endpoints";
-import { HTTP_METHODS, invokeApi } from "../../../utils/http-service";
-import { convertObjKeyType, pick } from "../../../utils/misc";
+import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
+import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
+import { convertObjKeyType, pick } from "../../utils/misc";
 
 export const getUnitsList = (setDataFunc) => {
   invokeApi(HTTP_METHODS.GET, `${HOSTNAME}${REST_URLS.UNIT_NAME_LIST}`)

@@ -1,5 +1,5 @@
-import CustomModal from "../../../../core/modal";
-import SiTable from "../../../../core/table";
+import CustomModal from "../../../core/modal";
+import SiTable from "../../../core/table";
 import { useState } from "react";
 import { viewItemsConfig } from "./config";
 
