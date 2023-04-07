@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "./index.scss";
 import { Button } from "@mui/material";
-import { HTTP_METHODS, invokeApi } from "../../../utils/http-service";
-import { HOSTNAME } from "../../../utils/endpoints";
-import { REST_URLS } from "../../../utils/endpoints";
+import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
+import { HOSTNAME } from "../../utils/endpoints";
+import { REST_URLS } from "../../utils/endpoints";
 import { toast } from "react-toastify";
-import SiTable from "../../../core/table";
+import SiTable from "../../core/table";
 import { getHeaderConfig } from "./helper";
-import { ItemModal } from "./item.modal";
+import { VendorModal } from "./vendor.modal";
 
-const Item = () => {
+const Vendor = () => {
   const [filters, setFilters] = useState({
     sortBy: "-createdAt",
     limit: 10,
@@ -18,16 +18,16 @@ const Item = () => {
   const [tableData, setTableData] = useState({});
   const [modalDetails, setModalDetails] = useState({});
 
-  const itemHandler = (data, type) => {
+  const vendorHandler = (data, type) => {
     switch (type) {
-      case "update item":
+      case "update vendor":
         setModalDetails({
           data,
-          title: "Update Item Details",
+          title: "Update Vendor Details",
           showModal: true,
         });
         break;
-      case "create item":
+      case "create vendor":
         setModalDetails({
           data,
           title: "Create Vendor",
@@ -39,14 +39,14 @@ const Item = () => {
     }
   };
 
-  const getItemData = (itemFilter) => {
+  const getVendorData = (vendorFilter) => {
     const queryParams =
-      itemFilter && typeof itemFilter === "object"
-        ? { ...itemFilter }
+      vendorFilter && typeof vendorFilter === "object"
+        ? { ...vendorFilter }
         : { ...filters };
     invokeApi(
       HTTP_METHODS.GET,
-      `${HOSTNAME}${REST_URLS.QUERY_ITEMS}`,
+      `${HOSTNAME}${REST_URLS.QUERY_VENDORS}`,
       null,
       queryParams
     )
@@ -55,7 +55,6 @@ const Item = () => {
           toast.error(res?.message, { autoClose: 2000 });
           return;
         }
-
         setTableData(res);
       })
       .catch((err) => {
@@ -63,30 +62,30 @@ const Item = () => {
       });
   };
 
-  useEffect(() => {
-    getItemData(filters);
-  }, [filters]);
+  // useEffect(() => {
+  //   getVendorData(filters);
+  // }, [filters]);
   return (
-    <div className="item-container">
-      <div className="create-item-button">
+    <div className="vendor-container">
+      <div className="create-vendor-button">
         <Button
           variant="contained"
           onClick={() => {
-            itemHandler(null, "create item");
+            vendorHandler(null, "create vendor");
           }}
         >
           Create
         </Button>
       </div>
 
-      <div className="item-table">
+      <div className="vendor-table">
         <SiTable
           header={getHeaderConfig()}
           data={tableData.results || []}
           filters={filters}
-          customSiRowClass="item-table-row"
+          customSiRowClass="vendor-table-row"
           pageCount={tableData.totalPages}
-          onClick={itemHandler}
+          onClick={vendorHandler}
           onChange={(event, page) => {
             setFilters({
               ...filters,
@@ -95,7 +94,7 @@ const Item = () => {
           }}
         ></SiTable>
       </div>
-      <ItemModal
+      <VendorModal
         title={modalDetails.title || ""}
         closeModal={() => {
           setModalDetails({});
@@ -104,11 +103,11 @@ const Item = () => {
         showModal={modalDetails.showModal || false}
         onSuccess={() => {
           setModalDetails({});
-          getItemData(filters);
+          getVendorData(filters);
         }}
       />
     </div>
   );
 };
 
-export default Item;
+export default Vendor;

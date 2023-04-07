@@ -1,5 +1,4 @@
 import { DATE_FORMATS } from "./constants";
-import moment from "moment";
 
 export const appendZeroToTime = (number) => {
   if (number >= 0 && number < 10) {

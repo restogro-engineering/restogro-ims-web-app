@@ -1,9 +1,10 @@
 import Stack from "@mui/material/Stack";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
-import { HTTP_METHODS, invokeApi } from "../../../utils/http-service";
-import { HOSTNAME, REST_URLS } from "../../../utils/endpoints";
+import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
+import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
 import { toast } from "react-toastify";
+
 
 export const getHeaderConfig = () => {
   const config = [

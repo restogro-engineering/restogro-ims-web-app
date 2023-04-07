@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./index.scss";
 import { Button } from "@mui/material";
-import { HTTP_METHODS, invokeApi } from "../../../utils/http-service";
-import { HOSTNAME } from "../../../utils/endpoints";
-import { REST_URLS } from "../../../utils/endpoints";
+import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
+import { HOSTNAME } from "../../utils/endpoints";
+import { REST_URLS } from "../../utils/endpoints";
 import { toast } from "react-toastify";
-import SiTable from "../../../core/table";
+import SiTable from "../../core/table";
 import { getHeaderConfig } from "./config";
 import { CreatePurchaseOrderModal } from "./modals/create-purchase-order";
 import { ViewItemsModal } from "./modals/view-items.model";
