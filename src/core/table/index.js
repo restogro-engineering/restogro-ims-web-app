@@ -10,6 +10,7 @@ const SiTable = ({
   onChange,
   filters,
   customSiRowClass = "",
+  customSelectMessage,
 }) => {
   const [page, setPage] = useState(1);
   useEffect(() => {
@@ -36,7 +37,7 @@ const SiTable = ({
             <div className={`si-row ${customSiRowClass}`} key={index}>
               {header.map((h, i) => {
                 if (h.render) {
-                  return h.render(rowData, onClick);
+                  return h.render(rowData, onClick, index);
                 }
                 return (
                   <div>
@@ -52,7 +53,11 @@ const SiTable = ({
             </div>
           );
         })}
-        {data.length === 0 && <span className="no-records">No records</span>}
+        {data.length === 0 && (
+          <span className="no-records">
+            {customSelectMessage ? customSelectMessage : "No records"}
+          </span>
+        )}
       </div>
       <div className="si-pagination">
         {pageCount > 1 && (
