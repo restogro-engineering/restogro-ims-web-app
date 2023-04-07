@@ -32,11 +32,13 @@ const Header = () => {
     })
       .then(() => {
         clearOfflineData("user");
+        clearOfflineData("tokens");
         navigate("/login");
       })
       .catch((err) => {
         console.log(err);
         clearOfflineData("user");
+        clearOfflineData("tokens");
         navigate("/login");
       });
   };

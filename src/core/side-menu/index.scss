@@ -1,5 +1,5 @@
 /** @format */
-
+@import "../../styles/variables.scss";
 .header-container {
   background: #ffffff;
   border: 1px solid #e1e7ff;
@@ -55,11 +55,11 @@
     }
   }
   :hover {
-    background: #00895295;
+    background: $secondary;
     color: white;
   }
   .menu-item-active {
-    background: #008952;
+    background: $primary;
     color: white;
   }
 }

@@ -6,7 +6,7 @@
     .si-row {
       display: grid;
       justify-items: center;
-      background: #008952;
+      background: $bg-linear-blue;
       border: 1px solid #e1e7ff;
       box-sizing: border-box;
       padding: 1em;
@@ -40,7 +40,7 @@
 
     .clickable {
       cursor: pointer;
-      color: #008952;
+      color: $bg-linear-blue;
     }
     .no-records {
       display: flex;
