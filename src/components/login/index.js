@@ -6,7 +6,6 @@ import { invokeApi, HTTP_METHODS } from "../../utils/http-service";
 import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
 import { setOfflineData, getOfflineData } from "../../utils/offline-services";
 import { toast } from "react-toastify";
-import { BellCorpStudioLogoContainer } from "../Bellcorp-Studio-Logo";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -52,7 +51,7 @@ export const Login = () => {
   return (
     <div className="login-container">
       <div className="left">
-        <img src={require("../../resources/info.png")} />
+        <img src={require("../../resources/images/logo.png")} />
       </div>
       <div className="right">
         <div className="login-form">
@@ -97,7 +96,6 @@ export const Login = () => {
             <span className="error-msg">{loginDetails.errorMsg}</span>
           )}
         </div>
-        <BellCorpStudioLogoContainer />
       </div>
     </div>
   );

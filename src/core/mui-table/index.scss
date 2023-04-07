@@ -1,0 +1,55 @@
+@import "../../styles/variables.scss";
+.table-cell {
+  background: $bg-linear-blue;
+  color: white !important;
+  font-size: 13px !important;
+  padding: 7px !important;
+  line-height: normal !important;
+  border: none !important;
+}
+.body-cell {
+  padding: 7px !important;
+}
+.si-pagination {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+}
+.clickable {
+  cursor: pointer;
+  color: $bg-linear-blue;
+}
+.con-scroll::-webkit-scrollbar-thumb {
+  background-color: #d7dada; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+.con-scroll::-webkit-scrollbar {
+  width: 2px;
+  height: 10px;
+  @media only screen and (min-width: 2000) {
+    display: none;
+  }
+}
+
+.con-scroll::-webkit-scrollbar {
+  width: 2px;
+  height: 10px;
+  @media only screen and (min-width: 2000) {
+    display: none;
+  }
+}
+.table-container {
+  max-height: 23em;
+  min-height: 5em;
+  width: 100%;
+  overflow: auto;
+}
+.read-more-text {
+  margin: 0px;
+  .show-more {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #29528c;
+  }
+}
