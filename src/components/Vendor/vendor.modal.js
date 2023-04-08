@@ -111,7 +111,7 @@ export const VendorModal = ({
                   createOrUpdateVendor(vendorData, onSuccess);
                 }}
               >
-                {vendorData?.id ? "Update" : "Create"}
+                Save
               </Button>
             </Grid>
           </Grid>

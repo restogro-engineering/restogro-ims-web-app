@@ -53,7 +53,7 @@ export const getHeaderConfig = () => {
       render: (data, _, index) => {
         const value = data?.customUnit?.name;
         return (
-          <span  key={index}>
+          <span key={index}>
             {[null, undefined, NaN].includes(value) ? "-" : value}
           </span>
         );
@@ -67,10 +67,14 @@ export const getHeaderConfig = () => {
       label: "Price Per Base Unit",
       id: "pricePerBaseUnit",
       render: (data, _, index) => {
-        const value = data?.pricePerBaseUnit;
+        const value = parseFloat(data?.pricePerBaseUnit);
         return (
-          <span  key={index}>
-            {[null, undefined, NaN].includes(value) ? "-" : value}
+          <span key={index}>
+            {[null, undefined, NaN].includes(value )
+              ? "-"
+              :
+              (Math.round(value * 100) / 100).toFixed(2)
+              }
           </span>
         );
       },

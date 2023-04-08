@@ -162,6 +162,7 @@ export const CreatePurchaseOrderModal = ({
                 label="Date"
                 size="small"
                 disabled={true}
+                className="select-level-margin"
                 fullWidth
                 value={formatDate(
                   new Date().toISOString(),
@@ -289,6 +290,7 @@ export const CreatePurchaseOrderModal = ({
                   onChange={(page) => {
                     setItemsPage(page);
                   }}
+                  defaultEmptyChar="-"
                 />
               </div>
             </Grid>
@@ -319,7 +321,7 @@ export const CreatePurchaseOrderModal = ({
                 createPurchaseOrder(modalDetails, onSuccess);
               }}
             >
-              Create
+              Save
             </Button>
           </Grid>
         </CustomModal>

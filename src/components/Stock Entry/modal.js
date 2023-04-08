@@ -42,7 +42,6 @@ export const StockEntryUpdationModal = ({
                 type="number"
                 size="small"
                 fullWidth
-                helperText="Item count cannot be less than 0"
                 onChange={(e) => {
                   if (
                     (e?.target?.value && parseInt(e?.target?.value) < 0) ||
