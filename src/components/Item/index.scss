@@ -1,0 +1,29 @@
+.item-container {
+  .create-item-button {
+    display: flex;
+    justify-content: end;
+  }
+  .edit-icon {
+    display: flex;
+    justify-content: center;
+  }
+  .item-table {
+    margin-top: 25px;
+  }
+  .item-table-row.si-row {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+  .flexEnd {
+    display: flex;
+    justify-content: end;
+  }
+  .modal-text-field {
+    margin-bottom: 20px;
+  }
+  .modal-input-container {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}

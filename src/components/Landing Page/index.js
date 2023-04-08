@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./index.scss";
 import { MainTabContainer, TabPanel } from "../../core/tabs";
-import Item from "./item";
-import PurchaseOrder from "./purchase-order";
-import Vendor from "./vendor";
+import Item from "../Item"
+import PurchaseOrder from "../Purchase Order";
+import Vendor from "../Vendor";
 import Category from "../category";
 import Recipe from "../recipe";
 import Unit from "../unit";

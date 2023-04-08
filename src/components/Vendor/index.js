@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
-import "../index.scss";
+import {  useState } from "react";
+import "./index.scss";
 import { Button } from "@mui/material";
-import { HTTP_METHODS, invokeApi } from "../../../utils/http-service";
-import { HOSTNAME } from "../../../utils/endpoints";
-import { REST_URLS } from "../../../utils/endpoints";
+import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
+import { HOSTNAME } from "../../utils/endpoints";
+import { REST_URLS } from "../../utils/endpoints";
 import { toast } from "react-toastify";
-import SiTable from "../../../core/table";
+import SiTable from "../../core/table";
 import { getHeaderConfig } from "./helper";
+import { VendorModal } from "./vendor.modal";
 
 const Vendor = () => {
   const [filters, setFilters] = useState({
@@ -15,8 +16,28 @@ const Vendor = () => {
     page: 1,
   });
   const [tableData, setTableData] = useState({});
+  const [modalDetails, setModalDetails] = useState({});
 
-  const actionIconHandler = (data, type) => {};
+  const vendorHandler = (data, type) => {
+    switch (type) {
+      case "update vendor":
+        setModalDetails({
+          data,
+          title: "Update Vendor Details",
+          showModal: true,
+        });
+        break;
+      case "create vendor":
+        setModalDetails({
+          data,
+          title: "Create Vendor",
+          showModal: true,
+        });
+        break;
+      default:
+        break;
+    }
+  };
 
   const getVendorData = (vendorFilter) => {
     const queryParams =
@@ -49,9 +70,9 @@ const Vendor = () => {
       <div className="create-vendor-button">
         <Button
           variant="contained"
-          onClick={() => {}}
-          //   className="franchise-agreement-DetailButton-active"
-          //   startIcon={<FileCopyIcon />}
+          onClick={() => {
+            vendorHandler(null, "create vendor");
+          }}
         >
           Create
         </Button>
@@ -64,7 +85,7 @@ const Vendor = () => {
           filters={filters}
           customSiRowClass="vendor-table-row"
           pageCount={tableData.totalPages}
-          onClick={actionIconHandler}
+          onClick={vendorHandler}
           onChange={(event, page) => {
             setFilters({
               ...filters,
@@ -73,6 +94,18 @@ const Vendor = () => {
           }}
         ></SiTable>
       </div>
+      <VendorModal
+        title={modalDetails.title || ""}
+        closeModal={() => {
+          setModalDetails({});
+        }}
+        data={modalDetails.data || null}
+        showModal={modalDetails.showModal || false}
+        onSuccess={() => {
+          setModalDetails({});
+          getVendorData(filters);
+        }}
+      />
     </div>
   );
 };

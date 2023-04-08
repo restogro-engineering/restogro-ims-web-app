@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./private-route";
 import { Login } from "../components/login";
-import LandingPage from "../components/Landling Page";
+import LandingPage from "../components/Landing Page";
 const AppRoutes = () => {
   return (
     <div>
