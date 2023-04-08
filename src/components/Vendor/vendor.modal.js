@@ -45,7 +45,7 @@ export const VendorModal = ({
         <CustomModal
           title={title}
           contentClassName={{
-            headerBackgroundColor: "#008952",
+            // headerBackgroundColor: "#008952",
             customClass: `${
               customModalContentClass ? customModalContentClass : ""
             }`,
