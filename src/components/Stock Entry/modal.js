@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import CustomModal from "../../core/modal";
-import { IconButton, Button } from "@mui/material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import Stack from "@mui/material/Stack";
+import { Button, Grid, TextField } from "@mui/material";
 import { updateStockEntry } from "./apis";
+import { disableUpdateButton } from "./helper";
 
 export const StockEntryUpdationModal = ({
   showModal,
@@ -24,55 +22,68 @@ export const StockEntryUpdationModal = ({
           contentClassName={{
             // headerBackgroundColor: "#008952",
             customClass: "",
-            
           }}
           onClose={closeModal}
         >
-          <div>
-            <IconButton
-              className="hidden-button"
-              disabled={count === 1}
-              onClick={() => {
-                setCount(count - 1);
-              }}
-            >
-              <RemoveCircleIcon />
-            </IconButton>{" "}
-            {data?.name}
-          </div>
+          <Grid md={12} container spacing={2}>
+            <Grid md={12} item>
+              <TextField
+                label="Item Name"
+                disabled={true}
+                size="small"
+                fullWidth
+                value={data?.name || ""}
+              />
+            </Grid>
 
-          <div>
-            <IconButton
-              disabled={count === 0}
-              onClick={() => {
-                setCount(count - 1);
-              }}
+            <Grid md={12} item>
+              <TextField
+                label="Item count"
+                type="number"
+                size="small"
+                fullWidth
+                helperText="Item count cannot be less than 0"
+                onChange={(e) => {
+                  if (
+                    (e?.target?.value && parseInt(e?.target?.value) < 0) ||
+                    e?.target?.value === "-"
+                  ) {
+                    return;
+                  }
+                  setCount(e?.target?.value);
+                }}
+                value={`${count}`}
+              />
+            </Grid>
+            <Grid
+              md={12}
+              item
+              sx={{ display: "flex", justifyContent: "center", mt: 3 }}
+              spacing={2}
             >
-              <RemoveCircleIcon />
-            </IconButton>{" "}
-            {count}{" "}
-            <IconButton
-              onClick={() => {
-                setCount(count + 1);
-              }}
-            >
-              <AddCircleIcon />
-            </IconButton>
-          </div>
-          <Stack className="flexEnd" direction="row" spacing={2} sx={{ mt: 1 }}>
-            <Button variant="outlined" onClick={closeModal}>
-              Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => {
-                updateStockEntry({ ...data, count }, onSuccess);
-              }}
-            >
-              Update
-            </Button>
-          </Stack>
+              <Button
+                variant="outlined"
+                color="error"
+                sx={{ mr: 3 }}
+                fullWidth
+                onClick={closeModal}
+              >
+                Cancel
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="secondary"
+                fullWidth
+                disabled={disableUpdateButton(count)}
+                onClick={() => {
+                  updateStockEntry({ ...data, count }, onSuccess);
+                }}
+              >
+                Save
+              </Button>
+            </Grid>
+          </Grid>
         </CustomModal>
       )}
     </>

@@ -1,5 +1,5 @@
 import CustomModal from "../../core/modal";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
@@ -30,7 +30,6 @@ export const ItemModal = ({
   useEffect(() => {
     setModalData(data, setItemData);
   }, [data]);
-
   // Clearing data when modal gets closed
   useEffect(() => {
     if (!showModal) {
@@ -61,200 +60,178 @@ export const ItemModal = ({
           }}
           onClose={closeModal}
         >
-          <div className="modal-input-container">
-            <div>Code</div>
-            <TextField
-              size="small"
-              name="code"
-              fullWidth
-              onChange={settItemDateOnChange}
-              value={itemData.code}
-              placeholder="Code"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
-          <div className="modal-input-container">
-            <div>Name</div>
-            <TextField
-              size="small"
-              name="name"
-              fullWidth
-              onChange={settItemDateOnChange}
-              value={itemData.name}
-              placeholder="name"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
+          <Grid md={12} container spacing={2}>
+            <Grid md={6} item>
+              <TextField
+                label="Code"
+                size="small"
+                name="code"
+                fullWidth
+                value={itemData.code}
+                onChange={settItemDateOnChange}
+                placeholder="Code"
+              />
+            </Grid>
+            <Grid md={6} item>
+              <TextField
+                label="Name"
+                size="small"
+                name="name"
+                fullWidth
+                value={itemData.name}
+                onChange={settItemDateOnChange}
+                placeholder="Name"
+              />
+            </Grid>
 
-          <div className="modal-input-container">
-            <div>Category</div>
-            <Select
-              placeholder="Select Category"
-              options={categoryList}
-              name="category"
-              onChange={(e, details) =>
-                settItemDateOnChange(e, "select", details)
-              }
-              value={
-                ![null, undefined].includes(itemData.category)
-                  ? categoryList.find((ele) => ele.value === itemData.category)
-                  : null
-              }
-              styles={{
-                menu: (provided) => ({
-                  ...provided,
-                  zIndex: 2,
-                }),
-              }}
-            />
-          </div>
+            <Grid md={6} item>
+              <p className="select-label">Category</p>
 
-          <div className="modal-input-container">
-            <div>Sub Category</div>
-            <Select
-              placeholder="Select Sub Category"
-              options={categoryList}
-              onChange={(e, details) =>
-                settItemDateOnChange(e, "select", details)
-              }
-              name="subCategory"
-              value={
-                ![null, undefined].includes(itemData.subCategory)
-                  ? categoryList.find(
-                      (ele) => ele.value === itemData.subCategory
-                    )
-                  : null
-              }
-              styles={{
-                menu: (provided) => ({
-                  ...provided,
-                  zIndex: 2,
-                }),
-              }}
-            />
-          </div>
+              <Select
+                placeholder="Select Category"
+                options={categoryList}
+                name="category"
+                onChange={(e, details) =>
+                  settItemDateOnChange(e, "select", details)
+                }
+                value={
+                  ![null, undefined].includes(itemData.category)
+                    ? categoryList.find(
+                        (ele) => ele.value === itemData.category
+                      )
+                    : null
+                }
+                styles={{
+                  menu: (provided) => ({
+                    ...provided,
+                    zIndex: 2,
+                  }),
+                }}
+              />
+            </Grid>
 
-          <div className="modal-input-container">
-            <div>Current Stock</div>
+            <Grid md={6} item>
+              <p className="select-label">Sub Category</p>
 
-            <TextField
-              size="small"
-              name="curStock"
-              type="number"
-              fullWidth
-              onChange={settItemDateOnChange}
-              value={itemData.curStock}
-              placeholder="Current Stock"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
+              <Select
+                options={categoryList}
+                onChange={(e, details) =>
+                  settItemDateOnChange(e, "select", details)
+                }
+                placeholder="Select Sub Category"
+                name="subCategory"
+                value={
+                  ![null, undefined].includes(itemData.subCategory)
+                    ? categoryList.find(
+                        (ele) => ele.value === itemData.subCategory
+                      )
+                    : null
+                }
+                styles={{
+                  menu: (provided) => ({
+                    ...provided,
+                    zIndex: 2,
+                  }),
+                }}
+              />
+            </Grid>
 
-          <div className="modal-input-container">
-            <div>Minimum Stock</div>
-            <TextField
-              size="small"
-              name="minStock"
-              type="number"
-              fullWidth
-              onChange={settItemDateOnChange}
-              value={itemData.minStock}
-              placeholder="Minimum Stock"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
+            <Grid md={6} item>
+              <TextField
+                label="Minimum Stock"
+                size="small"
+                name="minStock"
+                fullWidth
+                value={itemData.minStock}
+                onChange={settItemDateOnChange}
+                placeholder="Minimum Stock"
+                type="number"
+              />
+            </Grid>
 
-          <div className="modal-input-container">
-            <div>Base Unit</div>
-            <TextField
-              size="small"
-              name="baseUnit"
-              fullWidth
-              onChange={settItemDateOnChange}
-              value={itemData.baseUnit}
-              placeholder="Base Unit"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
+            <Grid md={6} item>
+              <TextField
+                label="Base Unit"
+                size="small"
+                name="baseUnit"
+                fullWidth
+                value={itemData.baseUnit}
+                onChange={settItemDateOnChange}
+                placeholder="Base Unit"
+              />
+            </Grid>
 
-          <div className="modal-input-container">
-            <div>Custom Unit</div>
-            <Select
-              placeholder="Select Custom Unit"
-              options={unitList}
-              onChange={(e, details) =>
-                settItemDateOnChange(e, "select", details)
-              }
-              name="customUnit"
-              value={
-                ![null, undefined].includes(itemData.customUnit)
-                  ? unitList.find((ele) => ele.value === itemData.customUnit)
-                  : null
-              }
-              styles={{
-                menu: (provided) => ({
-                  ...provided,
-                  zIndex: 2,
-                }),
-              }}
-            />
-          </div>
+          
+            <Grid md={6} item>
+              <TextField
+                label="Supply Price"
+                size="small"
+                name="supplyPrice"
+                fullWidth
+                value={itemData.supplyPrice}
+                onChange={settItemDateOnChange}
+                placeholder="Supply Price"
+                type="number"
+              />
+            </Grid>
 
-          <div className="modal-input-container">
-            <div>Supply Price</div>
-            <TextField
-              size="small"
-              name="supplyPrice"
-              type="number"
-              fullWidth
-              onChange={settItemDateOnChange}
-              value={itemData.supplyPrice}
-              placeholder="Supply Price"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
+            <Grid md={6} item>
+              <TextField
+                label="Price Per Base Unit"
+                size="small"
+                name="pricePerBaseUnit"
+                fullWidth
+                value={itemData.pricePerBaseUnit}
+                onChange={settItemDateOnChange}
+                placeholder="Price Per Base Unit"
+                type="number"
+              />
+            </Grid>
+            <Grid md={6} item>
+              <p className="select-label">Custom Unit</p>
 
-          <div className="modal-input-container">
-            <div>Price Per Base Unit</div>
-            <TextField
-              size="small"
-              name="pricePerBaseUnit"
-              type="number"
-              fullWidth
-              onChange={settItemDateOnChange}
-              value={itemData.pricePerBaseUnit}
-              placeholder="Price Per Base Unit"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
+              <Select
+                placeholder="Select Custom Unit"
+                options={unitList}
+                onChange={(e, details) =>
+                  settItemDateOnChange(e, "select", details)
+                }
+                name="customUnit"
+                value={
+                  ![null, undefined].includes(itemData.customUnit)
+                    ? unitList.find((ele) => ele.value === itemData.customUnit)
+                    : null
+                }
+                styles={{
+                  menu: (provided) => ({
+                    ...provided,
+                    zIndex: 2,
+                  }),
+                }}
+              />
+            </Grid>
+          </Grid>
 
-          <Stack className="flexEnd" direction="row" spacing={2} sx={{ mt: 1 }}>
-            <Button variant="outlined" onClick={closeModal}>
-              Cancel
-            </Button>
+          <Grid
+            md={12}
+            item
+            sx={{ display: "flex", justifyContent: "center", mt: 3 }}
+            spacing={2}
+          >
             <Button
               variant="contained"
               color="error"
+              sx={{ mr: 3 }}
+              fullWidth
+              onClick={closeModal}
+            >
+              Cancel
+            </Button>
+
+            <Button
+              variant="outlined"
+              color="secondary"
+              fullWidth
               disabled={disableSaveButton(itemData)}
               onClick={() => {
                 createOrUpdateItem(itemData, onSuccess);
@@ -262,7 +239,7 @@ export const ItemModal = ({
             >
               {itemData?.id ? "Update" : "Create"}
             </Button>
-          </Stack>
+          </Grid>
         </CustomModal>
       )}
     </>

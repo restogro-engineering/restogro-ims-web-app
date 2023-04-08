@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export const disableSaveButton = (data) => {
   return (
     !data?.vendor ||
@@ -6,6 +8,21 @@ export const disableSaveButton = (data) => {
     !data?.store ||
     !data?.items?.length
   );
+};
+
+export const validatePayload = (payload) => {
+  let error = false;
+  let errorMessage = "";
+  payload?.items?.forEach?.((element) => {
+    if (!element?.quantity || parseInt(element?.quantity) <= 0) {
+      error = true;
+      errorMessage = "Please enter count for all the items selected";
+    }
+  });
+  if (error) {
+    toast.error(errorMessage, { autoClose: 2000 });
+  }
+  return { error };
 };
 
 export const getPurchaseOrderPayload = (data) => {

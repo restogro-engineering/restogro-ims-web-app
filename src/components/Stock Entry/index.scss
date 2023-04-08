@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+   
     .header-filter-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -12,11 +13,17 @@
     }
   }
   .stock-entry-table {
+    position: relative;
+    z-index: 1;
     .si-row.stock-entry-table-row {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
   .hidden-button {
     visibility: hidden;
+  }
+  .edit-icon {
+    display: flex;
+    justify-content: center;
   }
 }

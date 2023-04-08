@@ -6,7 +6,7 @@ export const getHeaderConfig = () => {
   const config = [
     {
       label: "Vendor",
-      key: "vendor",
+      id: "vendor",
       render: (data, _, index) => {
         return (
           <span className="si-cell" key={index}>
@@ -17,19 +17,19 @@ export const getHeaderConfig = () => {
     },
     {
       label: "PO Number",
-      key: "poNumber",
+      id: "poNumber",
     },
     {
       label: "PR Number",
-      key: "prNumber",
+      id: "prNumber",
     },
     {
       label: "Store",
-      key: "store",
+      id: "store",
     },
     {
       label: "Is Delivery Address Deployment Address",
-      key: "isDeliveryAddressDeploymentAddress",
+      id: "isDeliveryAddressDeploymentAddress",
       render: (data, _, index) => {
         return (
           <span className="si-cell" key={index}>
@@ -44,7 +44,7 @@ export const getHeaderConfig = () => {
     },
     {
       label: "Items",
-      value: "edit",
+      id: "edit",
       render: (data, onClick) => {
         return (
           <div className="edit-icon">

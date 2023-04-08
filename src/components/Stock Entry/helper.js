@@ -14,7 +14,7 @@ export const actionHandler = (data, type, setModalFunc, filters) => {
 };
 
 export const getQueryPayload = (data) => {
-  const query = pick(data, ["store", "items" , "limit", "page", "sortBy"]);
+  const query = pick(data, ["store", "items", "limit", "page", "sortBy"]);
   if (query?.items?.length) {
     query.items = JSON.stringify(query?.items.map((item) => item.value));
   } else {
@@ -24,10 +24,15 @@ export const getQueryPayload = (data) => {
 };
 
 export const getUpdatePayload = (data) => {
-  console.log(data)
+  console.log(data);
   const payload = {
     store: data.store,
     items: [{ item: data._id, curStock: data.count }],
   };
   return payload;
+};
+
+export const disableUpdateButton = (count) => {
+
+  return count === 0 ? false : !count;
 };

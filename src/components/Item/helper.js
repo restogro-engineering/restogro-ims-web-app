@@ -5,20 +5,19 @@ import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
 import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
 import { toast } from "react-toastify";
 
-
 export const getHeaderConfig = () => {
   const config = [
     {
       label: "Code",
-      key: "code",
+      id: "code",
     },
     {
       label: "Name",
-      key: "name",
+      id: "name",
     },
     {
       label: "Category",
-      key: "category",
+      id: "category",
       render: (data, _, index) => {
         return (
           <span className="si-cell" key={index}>
@@ -29,7 +28,7 @@ export const getHeaderConfig = () => {
     },
     {
       label: "Sub Category",
-      key: "subcategory",
+      id: "subcategory",
       render: (data, _, index) => {
         return (
           <span className="si-cell" key={index}>
@@ -39,20 +38,16 @@ export const getHeaderConfig = () => {
       },
     },
     {
-      label: "Current Stock",
-      key: "curStock",
-    },
-    {
       label: "Minimum Stock",
-      key: "minStock",
+      id: "minStock",
     },
     {
       label: "Base Unit",
-      key: "baseUnit",
+      id: "baseUnit",
     },
     {
       label: "Custom Unit",
-      key: "customUnit",
+      id: "customUnit",
       render: (data, _, index) => {
         return (
           <span className="si-cell" key={index}>
@@ -63,15 +58,15 @@ export const getHeaderConfig = () => {
     },
     {
       label: "Supply Price",
-      key: "supplyPrice",
+      id: "supplyPrice",
     },
     {
       label: "Price Per Base Unit",
-      key: "pricePerBaseUnit",
+      id: "pricePerBaseUnit",
     },
     {
       label: "Actions",
-      value: "edit",
+      id: "edit",
       render: (data, onClick) => {
         return (
           <div className="edit-icon">
@@ -96,6 +91,7 @@ export const getHeaderConfig = () => {
 
 export const createOrUpdateItem = (data, onSuccess) => {
   const itemId = data.id;
+
   const method = itemId ? HTTP_METHODS.PUT : HTTP_METHODS.POST;
   const url = itemId
     ? `${REST_URLS.UPDATE_ITEM}${itemId}`
@@ -103,6 +99,7 @@ export const createOrUpdateItem = (data, onSuccess) => {
   const message = itemId
     ? "Item created successfully"
     : "Item Updated Successfully";
+
   invokeApi(method, `${HOSTNAME}${url}`, data)
     .then((res) => {
       if (res?.message) {

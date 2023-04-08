@@ -24,6 +24,9 @@
     margin-bottom: 20px;
   }
   .create-modal-table {
+    position: relative;
+    z-index: 1;
+    margin-top: 20px;
     margin-bottom: 20px;
     .item-table-row {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -36,5 +39,23 @@
   }
   .warning {
     color: red;
+  }
+  .select-label {
+    margin: 0;
+  }
+  .custom-modal-container .modal-content {
+    max-height: 95vh;
+    // overflow-y: scroll;
+  }
+  .select-container {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    align-items: center;
+  }
+  .hide-visiblity {
+    visibility: hidden;
+  }
+  .select-label {
+    margin: 0px;
   }
 }

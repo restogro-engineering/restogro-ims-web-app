@@ -5,9 +5,9 @@ import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
 import { HOSTNAME } from "../../utils/endpoints";
 import { REST_URLS } from "../../utils/endpoints";
 import { toast } from "react-toastify";
-import SiTable from "../../core/table";
 import { getHeaderConfig } from "./helper";
 import { ItemModal } from "./item.modal";
+import MuiTable from "../../core/mui-table";
 
 const Item = () => {
   const [filters, setFilters] = useState({
@@ -30,7 +30,7 @@ const Item = () => {
       case "create item":
         setModalDetails({
           data,
-          title: "Create Vendor",
+          title: "Create Item",
           showModal: true,
         });
         break;
@@ -68,33 +68,30 @@ const Item = () => {
   }, [filters]);
   return (
     <div className="item-container">
-      <div className="create-item-button">
-        <Button
-          variant="contained"
-          onClick={() => {
-            itemHandler(null, "create item");
-          }}
-        >
-          Create
-        </Button>
-      </div>
+      <Button
+        variant="outlined"
+        sx={{ float: "right", mb: 1 }}
+        onClick={() => {
+          itemHandler(null, "create item");
+        }}
+      >
+        Create Item
+      </Button>
 
-      <div className="item-table">
-        <SiTable
-          header={getHeaderConfig()}
-          data={tableData.results || []}
-          filters={filters}
-          customSiRowClass="item-table-row"
-          pageCount={tableData.totalPages}
-          onClick={itemHandler}
-          onChange={(event, page) => {
-            setFilters({
-              ...filters,
-              page,
-            });
-          }}
-        ></SiTable>
-      </div>
+      <MuiTable
+        columnsList={getHeaderConfig()}
+        dataList={tableData.results || []}
+        filters={filters}
+        onClick={itemHandler}
+        pageCount={tableData.totalPages}
+        onChange={(page) => {
+          setFilters({
+            ...filters,
+            page,
+          });
+        }}
+      />
+
       <ItemModal
         title={modalDetails.title || ""}
         closeModal={() => {
