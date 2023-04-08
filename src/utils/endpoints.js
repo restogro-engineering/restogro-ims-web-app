@@ -23,6 +23,7 @@ export const REST_URLS = {
   UNIT: `${service}unit`,
   RECIPE: `${service}recipe`,
   GET_ALL_UNITS: `${service}unit/get-all-units`,
+  GET_ALL_ITEMS: `${service}item/get-all-items`,
 };
 
 // export const HOSTNAME = "https://dev-api.mysubway.in";

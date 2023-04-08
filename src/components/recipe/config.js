@@ -16,8 +16,14 @@ export const recipeItemHeaderConfig = () => {
       label: "Unit",
       id: "item.unit",
       render: (data) => {
-        console.log(data.item.unit);
         return data.item.unit;
+      },
+    },
+    {
+      label: "Amount",
+      id: "item.price",
+      render: (data) => {
+        return data.item.price;
       },
     },
     {
