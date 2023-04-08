@@ -8,6 +8,8 @@ export const REST_URLS = {
   CATEGORY: `${service}category`,
   LIST_PARENT_CATEGORY: `${service}category/get-parent-categories`,
   UNIT: `${service}unit`,
+  RECIPE: `${service}recipe`,
+  GET_ALL_UNITS: `${service}unit/get-all-units`,
 };
 
 // export const HOSTNAME = "https://dev-api.mysubway.in";
