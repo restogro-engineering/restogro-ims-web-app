@@ -23,9 +23,9 @@ const RecipeCardTable = ({ data, pageChange, recipeDetails }) => {
                     });
                   }}
                 >
-                  <p>{ele?.name}</p>
+                  <p className="title">{ele?.name}</p>
                   <div>
-                    <p>Ingredients</p>
+                    <p>Igredients Required</p>
                     {ele?.baseRecipe?.map((i, index) => {
                       if (index < 4) {
                         return (

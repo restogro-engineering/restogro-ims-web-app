@@ -45,9 +45,16 @@ const Recipe = () => {
   return (
     <div className="recipe-container">
       {!createNewRecipe && !showFullRecipe?.isShow && (
-        <Button variant="contained" onClick={() => setCreateNewRecipe(true)}>
-          Add New Recipe
-        </Button>
+        <div className="r-header">
+          <h2>List Of Recipes</h2>
+          <Button
+            variant="contained"
+            onClick={() => setCreateNewRecipe(true)}
+            sx={{ float: "right", mb: 0.5, mr: 2.5 }}
+          >
+            Add New Recipe
+          </Button>
+        </div>
       )}
 
       {!showFullRecipe?.isShow && !createNewRecipe && (

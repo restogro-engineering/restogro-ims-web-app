@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./index.scss";
 import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
 import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -6,7 +7,7 @@ import { toast } from "react-toastify";
 import MuiTable from "../../core/mui-table";
 import { recipeItemHeaderConfig } from "./config";
 import CustomModal from "../../core/modal";
-import { Button, TextField, Drawer } from "@mui/material";
+import { Button, TextField, Drawer, Grid } from "@mui/material";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import AddRecipeItems from "./addRecipeItems";
 const ShowRecipe = ({ recipeData, setShowFullRecipe, getRecipes }) => {
@@ -224,55 +225,80 @@ const ShowRecipe = ({ recipeData, setShowFullRecipe, getRecipes }) => {
 
   return (
     <div>
-      <ArrowBackIosIcon
-        onClick={() => {
-          setShowFullRecipe(false);
-          getRecipes({ page: 1, limit: 10, sortBy: "-createdAt" });
-        }}
-        sx={{ cursor: "pointer" }}
-      />
-      {recipeData?.name}
-      <p>
-        Basic Recipe{" "}
-        <ControlPointIcon
-          onClick={() => setAddItems({ isOpen: true, type: "baseRecipe" })}
+      <div className="recipe-title-con m-b">
+        <ArrowBackIosIcon
+          onClick={() => {
+            setShowFullRecipe(false);
+            getRecipes({ page: 1, limit: 10, sortBy: "-createdAt" });
+          }}
           sx={{ cursor: "pointer" }}
         />
-      </p>
+        <h2>{recipeData?.name}</h2>
+      </div>
+
+      <div className="recipe-title-con">
+        <p>Basic Recipe</p>
+        <ControlPointIcon
+          onClick={() => setAddItems({ isOpen: true, type: "baseRecipe" })}
+          sx={{ cursor: "pointer", ml: 2 }}
+        />
+      </div>
+
       <MuiTable
         columnsList={recipeItemHeaderConfig()}
         dataList={tableData?.baseRecipe || []}
         onClick={changeItem}
         pageCount={1}
       />
-      <p>
-        Take Out Add Ons{" "}
-        <ControlPointIcon
-          onClick={() => setAddItems({ isOpen: true, type: "takeOutAddOns" })}
-          sx={{ cursor: "pointer" }}
-        />
-      </p>
-      <MuiTable
-        columnsList={recipeItemHeaderConfig()}
-        dataList={tableData?.takeOutAddOns || []}
-        onClick={changeTakeOutItem}
-        pageCount={1}
-      />
-      <p>
-        Delivery Add Ons
-        <ControlPointIcon
-          onClick={() => setAddItems({ isOpen: true, type: "deliveryAddOns" })}
-          sx={{ cursor: "pointer" }}
-        />
-      </p>
-      <MuiTable
-        columnsList={recipeItemHeaderConfig()}
-        dataList={tableData?.deliveryAddOns || []}
-        onClick={changeDeliveryItem}
-        pageCount={1}
-      />
+      <Grid
+        container
+        md={12}
+        sx={{ display: "flex", justifyContent: "space-between" }}
+      >
+        <Grid item md={5.8} sm={12}>
+          <div className="recipe-title-con">
+            <p>Take Out Add Ons</p>
+            <ControlPointIcon
+              onClick={() =>
+                setAddItems({ isOpen: true, type: "takeOutAddOns" })
+              }
+              sx={{ cursor: "pointer", ml: 2 }}
+            />
+          </div>
+
+          <MuiTable
+            columnsList={recipeItemHeaderConfig()}
+            dataList={tableData?.takeOutAddOns || []}
+            onClick={changeTakeOutItem}
+            pageCount={1}
+          />
+        </Grid>
+        <Grid md={5.8} item sm={12}>
+          <div className="recipe-title-con">
+            <p>Delivery Add Ons</p>
+            <ControlPointIcon
+              onClick={() =>
+                setAddItems({ isOpen: true, type: "deliveryAddOns" })
+              }
+              sx={{ cursor: "pointer", ml: 2 }}
+            />
+          </div>
+
+          <MuiTable
+            columnsList={recipeItemHeaderConfig()}
+            dataList={tableData?.deliveryAddOns || []}
+            onClick={changeDeliveryItem}
+            pageCount={1}
+          />
+        </Grid>
+      </Grid>
+
       <div>
-        <Button variant="contained" onClick={editRecipeHandler}>
+        <Button
+          variant="contained"
+          onClick={editRecipeHandler}
+          sx={{ float: "right" }}
+        >
           Save
         </Button>
       </div>
@@ -292,6 +318,7 @@ const ShowRecipe = ({ recipeData, setShowFullRecipe, getRecipes }) => {
             label="Quantity"
             value={editRecipe?.quantity}
             type="number"
+            size="small"
             onChange={(e) => {
               setEditRecipe((prevVal) => ({
                 ...prevVal,
@@ -300,11 +327,31 @@ const ShowRecipe = ({ recipeData, setShowFullRecipe, getRecipes }) => {
             }}
             fullWidth
           />
-          <div>
+          <div className="btn-con">
             <Button
               variant="contained"
+              size="small"
+              color="error"
+              fullWidth
+              onClick={() =>
+                setEditRecipe({
+                  isEdit: false,
+                  quantity: "",
+                  baseRecipe: "",
+                  data: {},
+                })
+              }
+              sx={{ mr: "5px", mt: 3 }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="outlined"
+              size="small"
+              fullWidth
               onClick={() => quantityChangeHandler(editRecipe?.type)}
               disabled={!editRecipe?.quantity}
+              sx={{ mt: 3 }}
             >
               Save
             </Button>

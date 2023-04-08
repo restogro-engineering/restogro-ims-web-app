@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { TextField, Drawer, Button } from "@mui/material";
+import { TextField, Drawer, Button, Grid } from "@mui/material";
 import MuiTable from "../../core/mui-table";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { recipeItemHeaderConfig } from "./config";
@@ -158,6 +158,40 @@ const AddRecipe = ({ setCreateNewRecipe, getRecipes }) => {
       data: data,
     });
   };
+  const editRecipeHandler = () => {
+    const baseRecipe = payload?.baseRecipe.map((ele) => ({
+      ...ele,
+      item: parseInt(ele?.item?.id),
+    }));
+    const takeOutAddOns = payload?.takeOutAddOns.map((ele) => ({
+      ...ele,
+      item: parseInt(ele?.item?.id),
+    }));
+    const deliveryAddOns = payload?.deliveryAddOns.map((ele) => ({
+      ...ele,
+      item: parseInt(ele?.item?.id),
+    }));
+    const data = {
+      name: payload?.name,
+      baseRecipe,
+      takeOutAddOns,
+      deliveryAddOns,
+    };
+    if (recipeId) {
+      invokeApi(
+        HTTP_METHODS.PUT,
+        `${HOSTNAME}${REST_URLS.RECIPE}/${recipeId}`,
+        data
+      ).then((res) => {
+        if (res.message) {
+          toast.error(res.message, { autoClose: 2000 });
+        } else {
+          toast.success("Recipe Updated Successfully", { autoClose: 2000 });
+          getRecipeData();
+        }
+      });
+    }
+  };
   useEffect(() => {
     if (recipeId) {
       getRecipeData();
@@ -168,70 +202,93 @@ const AddRecipe = ({ setCreateNewRecipe, getRecipes }) => {
   }, []);
   return (
     <div>
-      <ArrowBackIosIcon
-        onClick={() => {
-          setCreateNewRecipe(false);
-          getRecipes({ page: 1, limit: 10, sortBy: "-createdAt" });
-        }}
-        sx={{ cursor: "pointer" }}
-      />
-      Make New Recipe
+      <div className="recipe-title-con m-b">
+        <ArrowBackIosIcon
+          onClick={() => {
+            setCreateNewRecipe(false);
+            getRecipes({ page: 1, limit: 10, sortBy: "-createdAt" });
+          }}
+          sx={{ cursor: "pointer" }}
+        />
+        <h2>Make New Recipe</h2>
+      </div>
+
       <div>
         <TextField
-          label="Name"
+          label="Recipe Name"
           size="small"
+          sx={{ margin: "auto", mb: 2 }}
           onChange={(e) => {
             setPayload((prevVal) => ({ ...prevVal, name: e.target.value }));
           }}
         />
         <div>
-          <p>
-            Basic Recipe{" "}
+          <div className="recipe-title-con">
+            <p>Basic Recipe</p>
             <ControlPointIcon
               onClick={() => setAddItems({ isOpen: true, type: "baseRecipe" })}
-              sx={{ cursor: "pointer" }}
+              sx={{ cursor: "pointer", ml: 3 }}
             />
-          </p>
+          </div>
+
           <MuiTable
             columnsList={recipeItemHeaderConfig()}
             dataList={payload?.baseRecipe || []}
             onClick={changeItem}
             pageCount={1}
           />
-          <p>
-            Take Out Add Ons{" "}
-            <ControlPointIcon
-              onClick={() =>
-                setAddItems({ isOpen: true, type: "takeOutAddOns" })
-              }
-              sx={{ cursor: "pointer" }}
-            />
-          </p>
-          <MuiTable
-            columnsList={recipeItemHeaderConfig()}
-            dataList={payload?.takeOutAddOns || []}
-            onClick={changeTakeOutItem}
-            pageCount={1}
-          />
-          <p>
-            Delivery Add Ons
-            <ControlPointIcon
-              onClick={() =>
-                setAddItems({ isOpen: true, type: "deliveryAddOns" })
-              }
-              sx={{ cursor: "pointer" }}
-            />
-          </p>
-          <MuiTable
-            columnsList={recipeItemHeaderConfig()}
-            dataList={payload?.deliveryAddOns || []}
-            onClick={changeDeliveryItem}
-            pageCount={1}
-          />
+          <Grid
+            container
+            md={12}
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <Grid item md={5.8}>
+              <div className="recipe-title-con">
+                <p>Take Out Add Ons </p>
+                <ControlPointIcon
+                  onClick={() =>
+                    setAddItems({ isOpen: true, type: "takeOutAddOns" })
+                  }
+                  sx={{ cursor: "pointer", ml: 3 }}
+                />
+              </div>
+
+              <MuiTable
+                columnsList={recipeItemHeaderConfig()}
+                dataList={payload?.takeOutAddOns || []}
+                onClick={changeTakeOutItem}
+                pageCount={1}
+              />
+            </Grid>
+            <Grid item md={5.8}>
+              <div className="recipe-title-con">
+                <p>Delivery Add Ons</p>
+                <ControlPointIcon
+                  onClick={() =>
+                    setAddItems({ isOpen: true, type: "deliveryAddOns" })
+                  }
+                  sx={{ cursor: "pointer", ml: 3 }}
+                />
+              </div>
+
+              <MuiTable
+                columnsList={recipeItemHeaderConfig()}
+                dataList={payload?.deliveryAddOns || []}
+                onClick={changeDeliveryItem}
+                pageCount={1}
+              />
+            </Grid>
+          </Grid>
+
           <div>
-            {/* <Button variant="contained" onClick={editRecipeHandler}>
-          Save
-        </Button> */}
+            <Button
+              variant="contained"
+              onClick={editRecipeHandler}
+              disabled={!recipeId}
+              sx={{ float: "right" }}
+            >
+              Save
+            </Button>
           </div>
           {editRecipe?.isEdit && (
             <CustomModal

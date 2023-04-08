@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 export const recipeItemHeaderConfig = () => {
   return [
     {
-      label: "Name",
+      label: "Item",
       id: "item.name",
       render: (data) => {
         return data.item.name;
