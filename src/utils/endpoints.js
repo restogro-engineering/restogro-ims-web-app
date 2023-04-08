@@ -24,6 +24,9 @@ export const REST_URLS = {
   RECIPE: `${service}recipe`,
   GET_ALL_UNITS: `${service}unit/get-all-units`,
   GET_ALL_ITEMS: `${service}item/get-all-items`,
+  QUERY_STOCK_ENTRY: `${service}stock/`,
+  UPDATE_STOCK_ENTRY: `${service}stock/update-stock/`,
+  ITEM_LIST_BY_ACCOUNT: `${service}item/list-by-account`,
 };
 
 // export const HOSTNAME = "https://dev-api.mysubway.in";

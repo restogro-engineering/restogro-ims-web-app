@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useState, useEffect } from "react";
 import "./index.scss";
 import { Button } from "@mui/material";
 import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
@@ -62,9 +62,9 @@ const Vendor = () => {
       });
   };
 
-  // useEffect(() => {
-  //   getVendorData(filters);
-  // }, [filters]);
+  useEffect(() => {
+    getVendorData(filters);
+  }, [filters]);
   return (
     <div className="vendor-container">
       <div className="create-vendor-button">
