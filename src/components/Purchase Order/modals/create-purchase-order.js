@@ -61,7 +61,7 @@ export const CreatePurchaseOrderModal = ({
         <CustomModal
           title="Create Purchase Order"
           contentClassName={{
-            headerBackgroundColor: "#008952",
+            // headerBackgroundColor: "#008952",
             customClass: "",
           }}
           onClose={closeModal}

@@ -22,7 +22,7 @@ export const StockEntryUpdationModal = ({
         <CustomModal
           title="Update Stock Entry"
           contentClassName={{
-            headerBackgroundColor: "#008952",
+            // headerBackgroundColor: "#008952",
             customClass: "",
             
           }}
