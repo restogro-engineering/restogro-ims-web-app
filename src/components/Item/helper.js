@@ -67,7 +67,7 @@ export const getHeaderConfig = () => {
       label: "Price Per Base Unit",
       id: "pricePerBaseUnit",
       render: (data, _, index) => {
-        const value = data?.customUnit?.name;
+        const value = data?.pricePerBaseUnit;
         return (
           <span  key={index}>
             {[null, undefined, NaN].includes(value) ? "-" : value}
