@@ -3,12 +3,18 @@
   background: $bg-linear-blue;
   color: white !important;
   font-size: 13px !important;
-  padding: 7px !important;
+  padding: 10px !important;
   line-height: normal !important;
   border: none !important;
 }
+.evenRow {
+  background-color: white;
+}
+.oddRow {
+  background-color: #d2d4d241;
+}
 .body-cell {
-  padding: 7px !important;
+  padding: 3px !important;
 }
 .si-pagination {
   display: flex;
@@ -44,6 +50,7 @@
   min-height: 5em;
   width: 100%;
   overflow: auto;
+  border: 1px solid grey;
 }
 .read-more-text {
   margin: 0px;

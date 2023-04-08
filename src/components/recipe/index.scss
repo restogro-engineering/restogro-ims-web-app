@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+.recipe-container {
+  margin-right: 2rem;
+  margin-left: 2rem;
+  .recipe-card-container {
+    display: flex;
+    justify-content: center;
+    .recipe-card {
+      width: 20rem;
+      height: 18rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #b3b6bad9;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+    }
+    .recipe-card:hover {
+      border-color: $primary;
+    }
+  }
+}
