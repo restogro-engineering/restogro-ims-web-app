@@ -35,7 +35,7 @@ export const createPurchaseOrderItemsConfig = () => {
                       e?.target?.value
                     );
                   }}
-                  value={`${data?.quantity || ''}`}
+                  value={`${data?.quantity || ""}`}
                 />
               </Grid>
             </Grid>
@@ -51,9 +51,10 @@ export const createPurchaseOrderItemsConfig = () => {
       label: "Total",
       id: "total",
       render: (data) => {
+        const value = data?.quantity * data?.pricePerBaseUnit;
         return (
           <span className="si-cell" key={data.id}>
-            {data?.quantity * data?.pricePerBaseUnit}
+            {value === 0 || value ? value : ""}
           </span>
         );
       },
@@ -113,7 +114,10 @@ export const viewItemsConfig = () => {
       render: (data) => {
         return (
           <span className="si-cell" key={data.id}>
-            {data?.quantity * data?.pricePerBaseUnit}
+            {(data?.quantity || data?.quantity === 0) &&
+            (data?.pricePerBaseUnit || data?.pricePerBaseUnit === 0)
+              ? data?.quantity * data?.pricePerBaseUnit
+              : ""}
           </span>
         );
       },
