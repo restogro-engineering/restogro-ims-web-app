@@ -21,6 +21,9 @@ export const REST_URLS = {
   CATEGORY: `${service}category`,
   LIST_PARENT_CATEGORY: `${service}category/get-parent-categories`,
   UNIT: `${service}unit`,
+  QUERY_STOCK_ENTRY: `${service}stock/`,
+  UPDATE_STOCK_ENTRY: `${service}stock/update-stock/`,
+  ITEM_LIST_BY_ACCOUNT: `${service}item/list-by-account`,
 };
 
 // export const HOSTNAME = "https://dev-api.mysubway.in";
