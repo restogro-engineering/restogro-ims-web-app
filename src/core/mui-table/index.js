@@ -25,7 +25,7 @@ const MuiTable = ({
   return (
     <div>
       <TableContainer className={` con-scroll`}>
-        <Table sx={{ minWidth: 650 }} stickyHeader>
+        <Table sx={{ minWidth: 650, border: "1px solid #e3e8e3" }} stickyHeader>
           <TableHead>
             <TableRow>
               {columnsList?.map((head) => (
@@ -45,6 +45,7 @@ const MuiTable = ({
               <TableRow
                 key={ele.id ? ele.id : index}
                 style={{ cursor: "context-menu" }}
+                className={index % 2 === 0 ? "evenRow" : "oddRow"}
               >
                 {columnsList?.map((col, index) => {
                   if (col.render) {

@@ -4,6 +4,8 @@ import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
 import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
 import RecipeCardTable from "./recipeCardTable";
 import ShowRecipe from "./showRecipe";
+import { Button } from "@mui/material";
+import AddRecipe from "./addRecipe";
 
 const Recipe = () => {
   const [tableData, setTableData] = useState({});
@@ -16,6 +18,7 @@ const Recipe = () => {
     isShow: false,
     data: {},
   });
+  const [createNewRecipe, setCreateNewRecipe] = useState(false);
   const getRecipeData = (filters) => {
     invokeApi(
       HTTP_METHODS.GET,
@@ -41,7 +44,13 @@ const Recipe = () => {
   }, [filters]);
   return (
     <div className="recipe-container">
-      {!showFullRecipe?.isShow && (
+      {!createNewRecipe && !showFullRecipe?.isShow && (
+        <Button variant="contained" onClick={() => setCreateNewRecipe(true)}>
+          Add New Recipe
+        </Button>
+      )}
+
+      {!showFullRecipe?.isShow && !createNewRecipe && (
         <RecipeCardTable
           data={tableData}
           pageChange={handlePageChange}
@@ -49,8 +58,18 @@ const Recipe = () => {
         />
       )}
 
-      {showFullRecipe?.isShow && (
-        <ShowRecipe recipeData={showFullRecipe?.data} />
+      {showFullRecipe?.isShow && !createNewRecipe && (
+        <ShowRecipe
+          recipeData={showFullRecipe?.data}
+          setShowFullRecipe={setShowFullRecipe}
+          getRecipes={getRecipeData}
+        />
+      )}
+      {createNewRecipe && !showFullRecipe && (
+        <AddRecipe
+          setCreateNewRecipe={setCreateNewRecipe}
+          getRecipes={getRecipeData}
+        />
       )}
     </div>
   );

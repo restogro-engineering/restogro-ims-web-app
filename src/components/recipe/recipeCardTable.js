@@ -9,10 +9,10 @@ const RecipeCardTable = ({ data, pageChange, recipeDetails }) => {
   return (
     <div>
       <div>
-        <Grid container md={12}>
+        <Grid container md={12} spacing={3}>
           {data?.results?.map((ele) => {
             return (
-              <Grid item md={4} xs={12} className="recipe-card-container">
+              <Grid item md={3} xs={12} className="recipe-card-container">
                 <div
                   key={ele.id}
                   className="recipe-card"
@@ -26,12 +26,14 @@ const RecipeCardTable = ({ data, pageChange, recipeDetails }) => {
                   <p>{ele?.name}</p>
                   <div>
                     <p>Ingredients</p>
-                    {ele?.baseRecipe?.map((i) => {
-                      return (
-                        <ul>
-                          <li>{i?.item?.name}</li>
-                        </ul>
-                      );
+                    {ele?.baseRecipe?.map((i, index) => {
+                      if (index < 4) {
+                        return (
+                          <ul>
+                            <li>{i?.item?.name}</li>
+                          </ul>
+                        );
+                      }
                     })}
                   </div>
                 </div>

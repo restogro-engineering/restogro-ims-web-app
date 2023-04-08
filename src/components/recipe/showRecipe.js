@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
 import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { toast } from "react-toastify";
 import MuiTable from "../../core/mui-table";
 import { recipeItemHeaderConfig } from "./config";
@@ -8,7 +9,7 @@ import CustomModal from "../../core/modal";
 import { Button, TextField, Drawer } from "@mui/material";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import AddRecipeItems from "./addRecipeItems";
-const ShowRecipe = ({ recipeData }) => {
+const ShowRecipe = ({ recipeData, setShowFullRecipe, getRecipes }) => {
   const [tableData, setTableData] = useState({});
   const [editRecipe, setEditRecipe] = useState({
     isEdit: false,
@@ -16,7 +17,7 @@ const ShowRecipe = ({ recipeData }) => {
     type: "",
     data: {},
   });
-  const [addItems, setAddItems] = useState(false);
+  const [addItems, setAddItems] = useState({ isOpen: false, type: "" });
   const [unitData, setUnitData] = useState([]);
   const getUnits = () => {
     invokeApi(HTTP_METHODS.GET, `${HOSTNAME}${REST_URLS.GET_ALL_UNITS}`)
@@ -64,29 +65,56 @@ const ShowRecipe = ({ recipeData }) => {
       });
     }
   };
-  const changeItem = (data) => {
-    setEditRecipe({
-      isEdit: true,
-      quantity: data?.quantity,
-      type: "baseRecipe",
-      data: data,
-    });
+  const changeItem = (data, action) => {
+    if (action === "edit") {
+      setEditRecipe({
+        isEdit: true,
+        quantity: data?.quantity,
+        type: "baseRecipe",
+        data: data,
+      });
+    }
+    if (action === "delete") {
+      const filteredItems = tableData.baseRecipe.filter(
+        (i) => i?.item?.id !== data?.item?.id
+      );
+      setTableData((prevVal) => ({ ...prevVal, baseRecipe: filteredItems }));
+    }
   };
-  const changeTakeOutItem = (data) => {
-    setEditRecipe({
-      isEdit: true,
-      quantity: data?.quantity,
-      type: "takeOutAddOns",
-      data: data,
-    });
+  const changeTakeOutItem = (data, action) => {
+    if (action === "edit") {
+      setEditRecipe({
+        isEdit: true,
+        quantity: data?.quantity,
+        type: "takeOutAddOns",
+        data: data,
+      });
+    }
+    if (action === "delete") {
+      const filteredItems = tableData.takeOutAddOns.filter(
+        (i) => i?.item?.id !== data?.item?.id
+      );
+      setTableData((prevVal) => ({ ...prevVal, takeOutAddOns: filteredItems }));
+    }
   };
-  const changeDeliveryItem = (data) => {
-    setEditRecipe({
-      isEdit: true,
-      quantity: data?.quantity,
-      type: "deliveryAddOns",
-      data: data,
-    });
+  const changeDeliveryItem = (data, action) => {
+    if (action === "edit") {
+      setEditRecipe({
+        isEdit: true,
+        quantity: data?.quantity,
+        type: "deliveryAddOns",
+        data: data,
+      });
+    }
+    if (action === "delete") {
+      const filteredItems = tableData.deliveryAddOns.filter(
+        (i) => i?.item?.id !== data?.item?.id
+      );
+      setTableData((prevVal) => ({
+        ...prevVal,
+        deliveryAddOns: filteredItems,
+      }));
+    }
   };
   const editRecipeHandler = () => {
     const baseRecipe = tableData?.baseRecipe.map((ele) => ({
@@ -193,10 +221,23 @@ const ShowRecipe = ({ recipeData }) => {
   useEffect(() => {
     getUnits();
   }, []);
+
   return (
     <div>
+      <ArrowBackIosIcon
+        onClick={() => {
+          setShowFullRecipe(false);
+          getRecipes({ page: 1, limit: 10, sortBy: "-createdAt" });
+        }}
+        sx={{ cursor: "pointer" }}
+      />
+      {recipeData?.name}
       <p>
-        Basic Recipe <ControlPointIcon onClick={() => setAddItems(true)} />
+        Basic Recipe{" "}
+        <ControlPointIcon
+          onClick={() => setAddItems({ isOpen: true, type: "baseRecipe" })}
+          sx={{ cursor: "pointer" }}
+        />
       </p>
       <MuiTable
         columnsList={recipeItemHeaderConfig()}
@@ -204,14 +245,26 @@ const ShowRecipe = ({ recipeData }) => {
         onClick={changeItem}
         pageCount={1}
       />
-      <p>Take Out Add Ons</p>
+      <p>
+        Take Out Add Ons{" "}
+        <ControlPointIcon
+          onClick={() => setAddItems({ isOpen: true, type: "takeOutAddOns" })}
+          sx={{ cursor: "pointer" }}
+        />
+      </p>
       <MuiTable
         columnsList={recipeItemHeaderConfig()}
         dataList={tableData?.takeOutAddOns || []}
         onClick={changeTakeOutItem}
         pageCount={1}
       />
-      <p>Delivery Add Ons</p>
+      <p>
+        Delivery Add Ons
+        <ControlPointIcon
+          onClick={() => setAddItems({ isOpen: true, type: "deliveryAddOns" })}
+          sx={{ cursor: "pointer" }}
+        />
+      </p>
       <MuiTable
         columnsList={recipeItemHeaderConfig()}
         dataList={tableData?.deliveryAddOns || []}
@@ -258,8 +311,17 @@ const ShowRecipe = ({ recipeData }) => {
           </div>
         </CustomModal>
       )}
-      <Drawer anchor="right" open={addItems} onClose={() => setAddItems(false)}>
-        <AddRecipeItems usedItems={tableData} />
+      <Drawer
+        anchor="right"
+        open={addItems?.isOpen}
+        onClose={() => setAddItems({ isOpen: false, type: "" })}
+      >
+        <AddRecipeItems
+          usedItems={tableData}
+          addItem={addItems}
+          updateAddItem={setAddItems}
+          getRecipeData={getRecipeData}
+        />
       </Drawer>
     </div>
   );

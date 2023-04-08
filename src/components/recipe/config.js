@@ -1,4 +1,5 @@
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 export const recipeItemHeaderConfig = () => {
   return [
     {
@@ -34,7 +35,12 @@ export const recipeItemHeaderConfig = () => {
           <div>
             <EditIcon
               color="secondary"
-              onClick={() => onClick(data)}
+              onClick={() => onClick(data, "edit")}
+              style={{ cursor: "pointer" }}
+            />
+            <DeleteIcon
+              color="error"
+              onClick={() => onClick(data, "delete")}
               style={{ cursor: "pointer" }}
             />
           </div>
