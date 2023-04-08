@@ -84,57 +84,6 @@ export const ItemModal = ({
             </Grid>
 
             <Grid xs={screenWidth < 500? 12:6} md={6} item>
-              <p className="select-label">Category</p>
-
-              <Select
-                options={categoryList}
-                name="category"
-                onChange={(e, details) =>
-                  settItemDateOnChange(e, "select", details)
-                }
-                value={
-                  ![null, undefined].includes(itemData.category)
-                    ? categoryList.find(
-                        (ele) => ele.value === itemData.category
-                      )
-                    : null
-                }
-                styles={{
-                  menu: (provided) => ({
-                    ...provided,
-                    zIndex: 2,
-                  }),
-                }}
-              />
-            </Grid>
-
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
-              <p className="select-label">Sub Category</p>
-
-              <Select
-                options={categoryList}
-                onChange={(e, details) =>
-                  settItemDateOnChange(e, "select", details)
-                }
-                placeholder="Select Sub Category"
-                name="subCategory"
-                value={
-                  ![null, undefined].includes(itemData.subCategory)
-                    ? categoryList.find(
-                        (ele) => ele.value === itemData.subCategory
-                      )
-                    : null
-                }
-                styles={{
-                  menu: (provided) => ({
-                    ...provided,
-                    zIndex: 2,
-                  }),
-                }}
-              />
-            </Grid>
-
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <TextField
                 label="Minimum Stock"
                 size="small"
@@ -194,6 +143,57 @@ export const ItemModal = ({
                 }}
               />
             </Grid>
+
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+              <p className="select-label">Category</p>
+
+              <Select
+                options={categoryList}
+                name="category"
+                onChange={(e, details) =>
+                  settItemDateOnChange(e, "select", details)
+                }
+                value={
+                  ![null, undefined].includes(itemData.category)
+                    ? categoryList.find(
+                        (ele) => ele.value === itemData.category
+                      )
+                    : null
+                }
+                styles={{
+                  menu: (provided) => ({
+                    ...provided,
+                    zIndex: 2,
+                  }),
+                }}
+              />
+            </Grid>
+
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+              <p className="select-label">Sub Category</p>
+
+              <Select
+                options={categoryList}
+                onChange={(e, details) =>
+                  settItemDateOnChange(e, "select", details)
+                }
+                placeholder="Select Sub Category"
+                name="subCategory"
+                value={
+                  ![null, undefined].includes(itemData.subCategory)
+                    ? categoryList.find(
+                        (ele) => ele.value === itemData.subCategory
+                      )
+                    : null
+                }
+                styles={{
+                  menu: (provided) => ({
+                    ...provided,
+                    zIndex: 2,
+                  }),
+                }}
+              />
+            </Grid>
           </Grid>
 
           <Grid
@@ -221,7 +221,7 @@ export const ItemModal = ({
                 createOrUpdateItem(itemData, onSuccess);
               }}
             >
-              {itemData?.id ? "Update" : "Create"}
+              Save
             </Button>
           </Grid>
         </CustomModal>
