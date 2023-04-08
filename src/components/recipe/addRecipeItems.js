@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
+import "./index.scss";
 import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
 import {
   Table,
@@ -229,7 +230,11 @@ const AddRecipeItems = ({
           ))}
         </TableBody>
       </Table>
-      <Button variant="contained" onClick={addItemHandler}>
+      <Button
+        variant="contained"
+        onClick={addItemHandler}
+        sx={{ float: "right", mt: 2, mr: 1 }}
+      >
         Save
       </Button>
     </div>
