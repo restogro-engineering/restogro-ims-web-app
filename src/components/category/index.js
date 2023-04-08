@@ -111,7 +111,7 @@ const Category = () => {
           setIsCreateModalOpen(true);
         }}
       >
-        Craete Category
+        Create Category
       </Button>
       <MuiTable
         columnsList={getHeaderConfig()}

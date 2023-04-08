@@ -1,0 +1,22 @@
+.stock-entry-container {
+  .header-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .header-filter-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      column-gap: 20px;
+    }
+  }
+  .stock-entry-table {
+    .si-row.stock-entry-table-row {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  .hidden-button {
+    visibility: hidden;
+  }
+}
