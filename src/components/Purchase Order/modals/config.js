@@ -1,6 +1,5 @@
 import { IconButton } from "@mui/material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { Grid, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from "@mui/material/Stack";
 
@@ -8,47 +7,49 @@ export const createPurchaseOrderItemsConfig = () => {
   let config = [
     {
       label: "Code",
-      key: "code",
+      id: "code",
     },
     {
       label: "Name",
-      key: "name",
+      id: "name",
     },
     {
       label: "Quantity",
-      key: "quantity",
-      render: (data, onClick, index) => {
+      id: "quantity",
+      render: (data, onClick, index, dataIndex) => {
         return (
           <span className="si-cell" key={data.id}>
-         
-            <IconButton
-            disabled={data?.quantity === 1}
-              onClick={() => {
-                onClick(data, "decrease item count", index);
-              }}
-            >
-              <RemoveCircleIcon />
-            </IconButton>
-            {data?.quantity}
-
-            <IconButton
-              onClick={() => {
-                onClick(data, "increase item count", index);
-              }}
-            >
-              <AddCircleIcon />
-            </IconButton>
+            <Grid md={12} container spacing={2}>
+              <Grid md={12} item>
+                <TextField
+                  label="Item count"
+                  type="number"
+                  size="small"
+                  fullWidth
+                  helperText="Item count cannot be less than 1"
+                  onChange={(e) => {
+                    onClick(
+                      data,
+                      "change in item count",
+                      dataIndex,
+                      e?.target?.value
+                    );
+                  }}
+                  value={`${data?.quantity || ''}`}
+                />
+              </Grid>
+            </Grid>
           </span>
         );
       },
     },
     {
       label: "Unit Price",
-      key: "pricePerBaseUnit",
+      id: "pricePerBaseUnit",
     },
     {
       label: "Total",
-      key: "total",
+      id: "total",
       render: (data) => {
         return (
           <span className="si-cell" key={data.id}>
@@ -59,14 +60,14 @@ export const createPurchaseOrderItemsConfig = () => {
     },
     {
       label: "Actions",
-      value: "edit",
-      render: (data, onClick, index) => {
+      id: "edit",
+      render: (data, onClick, index, dataIndex) => {
         return (
           <div className="edit-icon">
             <Stack direction="row" spacing={1}>
               <IconButton
                 onClick={() => {
-                  onClick(data, "remove item", index);
+                  onClick(data, "remove item", dataIndex);
                 }}
                 sx={{ p: 0 }}
               >
@@ -85,15 +86,15 @@ export const viewItemsConfig = () => {
   let config = [
     {
       label: "Code",
-      key: "code",
+      id: "code",
     },
     {
       label: "Name",
-      key: "name",
+      id: "name",
     },
     {
       label: "Quantity",
-      key: "quantity",
+      id: "quantity",
       render: (data) => {
         return (
           <span className="si-cell" key={data.id}>
@@ -104,11 +105,11 @@ export const viewItemsConfig = () => {
     },
     {
       label: "Unit Price",
-      key: "pricePerBaseUnit",
+      id: "pricePerBaseUnit",
     },
     {
       label: "Total",
-      key: "total",
+      id: "total",
       render: (data) => {
         return (
           <span className="si-cell" key={data.id}>

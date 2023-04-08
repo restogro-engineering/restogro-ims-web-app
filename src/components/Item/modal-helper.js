@@ -39,7 +39,7 @@ export const getCategoriesList = (setDataFunc) => {
 };
 
 export const disableSaveButton = (data) => {
-  return !data?.curStock;
+  return false;
 };
 
 export const setModalData = (data, setDataFunc) => {

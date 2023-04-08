@@ -1,5 +1,5 @@
 import CustomModal from "../../core/modal";
-import { Button, } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
@@ -52,74 +52,72 @@ export const VendorModal = ({
           }}
           onClose={closeModal}
         >
-          <div className="modal-input-container">
-            <div>
-              Name <span className="warning">*</span>
-            </div>
-            <TextField
-              size="small"
-              name="name"
-              fullWidth
-              onChange={setVendorDataOnChange}
-              value={vendorData.name}
-              placeholder="Name"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
+          <Grid md={12} container spacing={2}>
+            <Grid md={12} item>
+              <TextField
+                label="Name*"
+                size="small"
+                name="name"
+                fullWidth
+                onChange={setVendorDataOnChange}
+                value={vendorData.name}
+                placeholder="Name"
+              />
+            </Grid>
 
-          <div className="modal-input-container">
-            <div>
-              Email <span className="warning">*</span>
-            </div>
-            <TextField
-              size="small"
-              name="email"
-              fullWidth
-              onChange={setVendorDataOnChange}
-              value={vendorData.email}
-              placeholder="Email"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
-          <div className="modal-input-container">
-            <div>
-              GST Number <span className="warning">*</span>
-            </div>
-            <TextField
-              size="small"
-              name="gstNo"
-              fullWidth
-              onChange={setVendorDataOnChange}
-              value={vendorData.gstNo}
-              placeholder="GST Number"
-              variant="outlined"
-              InputProps={{
-                disableUnderline: true,
-              }}
-            />
-          </div>
+            <Grid md={12} item>
+              <TextField
+                label="Email *"
+                size="small"
+                name="email"
+                fullWidth
+                onChange={setVendorDataOnChange}
+                value={vendorData.email}
+                placeholder="Email"
+              />
+            </Grid>
 
-          <Stack className="flexEnd" direction="row" spacing={2} sx={{ mt: 1 }}>
-            <Button variant="outlined" onClick={closeModal}>
-              Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              disabled={disableSaveButton(vendorData)}
-              onClick={() => {
-                createOrUpdateVendor(vendorData, onSuccess);
-              }}
+            <Grid md={12} item>
+              <TextField
+                label=" GST Number *"
+                size="small"
+                name="gstNo"
+                fullWidth
+                onChange={setVendorDataOnChange}
+                value={vendorData.gstNo}
+                placeholder=" GST Number"
+              />
+            </Grid>
+
+            <Grid
+              md={12}
+              item
+              sx={{ display: "flex", justifyContent: "center", mt: 3 }}
+              spacing={2}
             >
-              {vendorData?.id ? "Update" : "Create"}
-            </Button>
-          </Stack>
+              <Button
+                variant="contained"
+                color="error"
+                sx={{ mr: 3 }}
+                fullWidth
+                onClick={closeModal}
+              >
+                Cancel
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="secondary"
+                fullWidth
+                disabled={disableSaveButton(vendorData)}
+                onClick={() => {
+                  createOrUpdateVendor(vendorData, onSuccess);
+                }}
+              >
+                {vendorData?.id ? "Update" : "Create"}
+              </Button>
+            </Grid>
+          </Grid>
         </CustomModal>
       )}
     </>

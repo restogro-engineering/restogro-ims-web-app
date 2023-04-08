@@ -9,15 +9,15 @@ export const getHeaderConfig = () => {
   const config = [
     {
       label: "Name",
-      key: "name",
+      id: "name",
     },
     {
       label: "Email",
-      key: "email",
+      id: "email",
     },
     {
       label: "GST Number",
-      key: "gstNo",
+      id: "gstNo",
     },
     {
       label: "Actions",

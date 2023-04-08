@@ -1,8 +1,5 @@
 import { getKeyMap } from "../../../utils/misc";
-import {
-  getItemListByCategory,
-  getCategoriesListByVendor,
-} from "./apis";
+import { getItemListByCategory, getCategoriesListByVendor } from "./apis";
 
 export const setCreateModalDetailsOnChange = (
   e,
@@ -12,7 +9,9 @@ export const setCreateModalDetailsOnChange = (
   setItemsListFunc,
   setCategoryListFunc,
   modalData,
-  itemList
+  itemList,
+  setItemsPage,
+  itemsPage
 ) => {
   switch (type) {
     case "select":
@@ -92,7 +91,15 @@ export const setCreateModalDetailsOnChange = (
                 e[index].quantity = 1;
               }
             });
+            {
+              const curLastPage = Math.ceil(itemList.length / 2);
+              const newLastPage = Math.ceil(e.length / 2);
+              if (newLastPage < curLastPage && itemsPage === curLastPage) {
+                setItemsPage(newLastPage);
+              }
+            }
             break;
+
           default:
             break;
         }
@@ -131,7 +138,10 @@ export const actionHandler = (
   setDataFunc,
   index,
   modalData,
-  setRefresh
+  setRefresh,
+  value,
+  setItemsPage,
+  itemsPage
 ) => {
   const newModalData = { ...modalData };
   switch (type) {
@@ -148,15 +158,29 @@ export const actionHandler = (
       newModalData.items[index].quantity += 1;
       break;
     case "remove item":
-      newModalData.items.splice(index, 1);
       setRefresh("items list");
+      newModalData.items.splice(index, 1);
+      {
+        const lastPage = Math.ceil(newModalData.items.length / 2);
+        if (itemsPage > lastPage) {
+          setItemsPage(lastPage);
+        }
+      }
+
+      break;
+    case "change in item count":
+      if ((value && parseInt(value) <= 0) || value === "-") {
+        return;
+      }
+      newModalData.items[index].quantity = value;
+
       break;
     default:
       break;
   }
+
+  setDataFunc(newModalData);
   setTimeout(() => {
     setRefresh("");
   }, 0);
-
-  setDataFunc(newModalData);
 };

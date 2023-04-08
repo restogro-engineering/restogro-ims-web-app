@@ -5,10 +5,10 @@ import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
 import { HOSTNAME } from "../../utils/endpoints";
 import { REST_URLS } from "../../utils/endpoints";
 import { toast } from "react-toastify";
-import SiTable from "../../core/table";
 import { getHeaderConfig } from "./config";
 import { CreatePurchaseOrderModal } from "./modals/create-purchase-order";
 import { ViewItemsModal } from "./modals/view-items.model";
+import MuiTable from "../../core/mui-table";
 
 const PurchaseOrder = () => {
   const [filters, setFilters] = useState({
@@ -74,33 +74,29 @@ const PurchaseOrder = () => {
   }, [filters]);
   return (
     <div className="purchase-order-container">
-      <div className="create-purchase-order-button">
-        <Button
-          variant="contained"
-          onClick={() => {
-            purchaseOrderHandler(null, "create purchase order");
-          }}
-        >
-          Create
-        </Button>
-      </div>
+      <Button
+        variant="outlined"
+        sx={{ float: "right", mb: 1 }}
+        onClick={() => {
+          purchaseOrderHandler(null, "create purchase order");
+        }}
+      >
+        Create Purchase Order
+      </Button>
 
-      <div className="purchase-order-table">
-        <SiTable
-          header={getHeaderConfig()}
-          data={tableData.results || []}
-          filters={filters}
-          customSiRowClass="purchase-order-table-row"
-          pageCount={tableData.totalPages}
-          onClick={purchaseOrderHandler}
-          onChange={(event, page) => {
-            setFilters({
-              ...filters,
-              page,
-            });
-          }}
-        ></SiTable>
-      </div>
+      <MuiTable
+        columnsList={getHeaderConfig()}
+        dataList={tableData.results || []}
+        filters={filters}
+        onClick={purchaseOrderHandler}
+        pageCount={tableData.totalPages}
+        onChange={(page) => {
+          setFilters({
+            ...filters,
+            page,
+          });
+        }}
+      />
 
       <CreatePurchaseOrderModal
         showModal={modalDetails?.type === "create purchase order"}
