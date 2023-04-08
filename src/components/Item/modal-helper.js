@@ -54,7 +54,6 @@ export const setModalData = (data, setDataFunc) => {
       "baseUnit",
       "customUnit",
       "supplyPrice",
-      "pricePerBaseUnit",
       "id",
     ]);
     if (details.category) {
