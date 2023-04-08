@@ -1,6 +1,5 @@
 import CustomModal from "../../core/modal";
 import { Button, Grid } from "@mui/material";
-import Stack from "@mui/material/Stack";
 import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { createOrUpdateItem } from "./helper";
@@ -13,6 +12,7 @@ import {
   setModalData,
   setModalDataOnChange,
 } from "./modal-helper";
+import useScreenWidth from "../../Hooks/useScreenWidth";
 
 export const ItemModal = ({
   title,
@@ -25,6 +25,7 @@ export const ItemModal = ({
   const [itemData, setItemData] = useState({});
   const [categoryList, setCategoryList] = useState([]);
   const [unitList, setUnitsList] = useState([]);
+  const screenWidth = useScreenWidth()
 
   // When we are updating an item we get data from props and we set it
   useEffect(() => {
@@ -61,7 +62,7 @@ export const ItemModal = ({
           onClose={closeModal}
         >
           <Grid md={12} container spacing={2}>
-            <Grid md={6} item>
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <TextField
                 label="Code"
                 size="small"
@@ -69,10 +70,9 @@ export const ItemModal = ({
                 fullWidth
                 value={itemData.code}
                 onChange={settItemDateOnChange}
-                placeholder="Code"
               />
             </Grid>
-            <Grid md={6} item>
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <TextField
                 label="Name"
                 size="small"
@@ -80,15 +80,13 @@ export const ItemModal = ({
                 fullWidth
                 value={itemData.name}
                 onChange={settItemDateOnChange}
-                placeholder="Name"
               />
             </Grid>
 
-            <Grid md={6} item>
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <p className="select-label">Category</p>
 
               <Select
-                placeholder="Select Category"
                 options={categoryList}
                 name="category"
                 onChange={(e, details) =>
@@ -110,7 +108,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid md={6} item>
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <p className="select-label">Sub Category</p>
 
               <Select
@@ -136,7 +134,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid md={6} item>
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <TextField
                 label="Minimum Stock"
                 size="small"
@@ -149,7 +147,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid md={6} item>
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <TextField
                 label="Base Unit"
                 size="small"
@@ -157,37 +155,23 @@ export const ItemModal = ({
                 fullWidth
                 value={itemData.baseUnit}
                 onChange={settItemDateOnChange}
-                placeholder="Base Unit"
               />
             </Grid>
 
-          
-            <Grid md={6} item>
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <TextField
                 label="Supply Price"
                 size="small"
                 name="supplyPrice"
                 fullWidth
+                className="select-level-with-text"
                 value={itemData.supplyPrice}
                 onChange={settItemDateOnChange}
-                placeholder="Supply Price"
                 type="number"
               />
             </Grid>
 
-            <Grid md={6} item>
-              <TextField
-                label="Price Per Base Unit"
-                size="small"
-                name="pricePerBaseUnit"
-                fullWidth
-                value={itemData.pricePerBaseUnit}
-                onChange={settItemDateOnChange}
-                placeholder="Price Per Base Unit"
-                type="number"
-              />
-            </Grid>
-            <Grid md={6} item>
+            <Grid xs={screenWidth < 500? 12:6} md={6} item>
               <p className="select-label">Custom Unit</p>
 
               <Select

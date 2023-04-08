@@ -15,6 +15,7 @@ const MuiTable = ({
   onChange,
   filters,
   onClick,
+  defaultEmptyChar,
 }) => {
   const [page, setPage] = useState(1);
   useEffect(() => {
@@ -66,7 +67,15 @@ const MuiTable = ({
                       align="center"
                       className="body-cell"
                     >
-                      {value === true ? "Yes" : value === false ? "No" : value}
+                      {value === true
+                        ? "Yes"
+                        : value === false
+                        ? "No"
+                        : defaultEmptyChar
+                        ? [null, undefined, NaN].includes(value)
+                          ? defaultEmptyChar
+                          : value
+                        : value}
                     </TableCell>
                   );
                 })}
