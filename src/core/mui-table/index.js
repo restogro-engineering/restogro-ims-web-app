@@ -41,11 +41,11 @@ const MuiTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {dataList?.map((ele, index) => (
+            {dataList?.map((ele, dataIndex) => (
               <TableRow
-                key={ele.id ? ele.id : index}
+                key={ele.id ? ele.id : dataIndex}
                 style={{ cursor: "context-menu" }}
-                className={index % 2 === 0 ? "evenRow" : "oddRow"}
+                className={dataIndex % 2 === 0 ? "evenRow" : "oddRow"}
               >
                 {columnsList?.map((col, index) => {
                   if (col.render) {
@@ -55,7 +55,7 @@ const MuiTable = ({
                         align="center"
                         className="body-cell"
                       >
-                        {col.render(ele, onClick, index, index)}
+                        {col.render(ele, onClick, index, dataIndex)}
                       </TableCell>
                     );
                   }
