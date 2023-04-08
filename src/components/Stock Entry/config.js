@@ -6,15 +6,15 @@ export const getHeaderConfig = () => {
   let config = [
     {
       label: "Name",
-      key: "name",
+      id: "name",
     },
     {
       label: "Stock",
-      key: "quantity",
+      id: "quantity",
     },
     {
       label: "Actions",
-      key: "actions",
+      id: "actions",
       render: (data, onClick) => {
         return (
           <div className="edit-icon">

@@ -4,10 +4,10 @@ import { getItemsList, queryStocketEntry } from "./apis";
 import Select from "react-select";
 import { dummyStoreOptions } from "../../utils/constants";
 import { Button } from "@mui/material";
-import SiTable from "../../core/table";
 import { getHeaderConfig } from "./config";
 import { actionHandler } from "./helper";
 import { StockEntryUpdationModal } from "./modal";
+import MuiTable from "../../core/mui-table";
 
 export const StockEntry = () => {
   const [itemList, setItemList] = useState([]);
@@ -82,7 +82,7 @@ export const StockEntry = () => {
         </div>
         <div>
           <Button
-            variant="contained"
+            variant="outlined"
             disabled={!filters?.hasOwnProperty("store")}
             onClick={() => {
               queryStocketEntry(
@@ -100,16 +100,15 @@ export const StockEntry = () => {
       </div>
 
       <div className="stock-entry-table">
-        <SiTable
-          header={getHeaderConfig()}
-          data={tableData.results || []}
+        <MuiTable
+          columnsList={getHeaderConfig()}
+          dataList={tableData.results || []}
           filters={filters}
-          customSiRowClass="stock-entry-table-row"
           pageCount={tableData.totalPages}
           onClick={(data, type) => {
             handler(data, type);
           }}
-          onChange={(event, page) => {
+          onChange={( page) => {
             setFilters({ ...filters, page });
 
             queryStocketEntry(
@@ -119,7 +118,8 @@ export const StockEntry = () => {
               true
             );
           }}
-        ></SiTable>
+        />
+
       </div>
       <StockEntryUpdationModal
         showModal={modalDetails?.showModal || false}

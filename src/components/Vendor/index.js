@@ -1,4 +1,4 @@
-import {  useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./index.scss";
 import { Button } from "@mui/material";
 import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import SiTable from "../../core/table";
 import { getHeaderConfig } from "./helper";
 import { VendorModal } from "./vendor.modal";
+import MuiTable from "../../core/mui-table";
 
 const Vendor = () => {
   const [filters, setFilters] = useState({
@@ -67,32 +68,30 @@ const Vendor = () => {
   }, [filters]);
   return (
     <div className="vendor-container">
-      <div className="create-vendor-button">
-        <Button
-          variant="contained"
-          onClick={() => {
-            vendorHandler(null, "create vendor");
-          }}
-        >
-          Create
-        </Button>
-      </div>
+      <Button
+        variant="outlined"
+        sx={{ float: "right", mb: 1 }}
+        onClick={() => {
+          vendorHandler(null, "create vendor");
+        }}
+      >
+        Create Vendor
+      </Button>
 
       <div className="vendor-table">
-        <SiTable
-          header={getHeaderConfig()}
-          data={tableData.results || []}
+        <MuiTable
+          columnsList={getHeaderConfig()}
+          dataList={tableData.results || []}
           filters={filters}
-          customSiRowClass="vendor-table-row"
           pageCount={tableData.totalPages}
           onClick={vendorHandler}
-          onChange={(event, page) => {
+          onChange={( page) => {
             setFilters({
               ...filters,
               page,
             });
           }}
-        ></SiTable>
+        />
       </div>
       <VendorModal
         title={modalDetails.title || ""}

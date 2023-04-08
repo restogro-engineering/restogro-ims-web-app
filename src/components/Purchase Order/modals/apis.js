@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { HOSTNAME, REST_URLS } from "../../../utils/endpoints";
 import { HTTP_METHODS, invokeApi } from "../../../utils/http-service";
-import { getPurchaseOrderPayload } from "./helper-2";
+import { getPurchaseOrderPayload, validatePayload } from "./helper-2";
 export const getVendorList = (setDataFunc) => {
   invokeApi(
     HTTP_METHODS.GET,
@@ -64,6 +64,10 @@ export const getItemListByCategory = async (params) => {
 };
 
 export const createPurchaseOrder = (data, onSuccess) => {
+  if (validatePayload(data)?.error) {
+    return
+  }
+
   const payload = getPurchaseOrderPayload(data);
   invokeApi(HTTP_METHODS.POST, `${HOSTNAME}${REST_URLS.CREATE_PURCHASE_ORDER}`, payload)
     .then((res) => {
