@@ -237,12 +237,8 @@ const AddRecipe = ({ setCreateNewRecipe, getRecipes }) => {
             onClick={changeItem}
             pageCount={1}
           />
-          <Grid
-            container
-            md={12}
-            sx={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <Grid item md={5.8}>
+          <div className="takeout-wrapper">
+            <div>
               <div className="recipe-title-con">
                 <p>Take Out Add Ons </p>
                 <ControlPointIcon
@@ -259,8 +255,8 @@ const AddRecipe = ({ setCreateNewRecipe, getRecipes }) => {
                 onClick={changeTakeOutItem}
                 pageCount={1}
               />
-            </Grid>
-            <Grid item md={5.8}>
+            </div>
+            <div>
               <div className="recipe-title-con">
                 <p>Delivery Add Ons</p>
                 <ControlPointIcon
@@ -277,9 +273,8 @@ const AddRecipe = ({ setCreateNewRecipe, getRecipes }) => {
                 onClick={changeDeliveryItem}
                 pageCount={1}
               />
-            </Grid>
-          </Grid>
-
+            </div>
+          </div>
           <div>
             <Button
               variant="contained"

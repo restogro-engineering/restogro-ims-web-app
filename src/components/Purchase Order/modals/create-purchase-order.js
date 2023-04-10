@@ -236,7 +236,6 @@ export const CreatePurchaseOrderModal = ({
               md={4}
               item
             >
-              <p></p>
               <FormControlLabel
                 value="end"
                 checked={!!modalDetails.isDeliveryAddressDeploymentAddress}

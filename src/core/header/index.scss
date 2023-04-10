@@ -1,5 +1,5 @@
 /** @format */
-
+@import "../../styles/responsive.scss";
 .header-container {
   background: #ffffff;
   border: 1px solid #e1e7ff;
@@ -11,9 +11,16 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  @include respond-to("small") {
+    height: 50px;
+  }
   .logo {
     width: 180px;
     padding-left: 10px;
+    @include respond-to("small") {
+      width: 100px;
+      padding-left: 2px;
+    }
   }
   .menu {
     display: flex;

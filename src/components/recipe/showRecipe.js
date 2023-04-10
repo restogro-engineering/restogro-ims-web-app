@@ -250,12 +250,8 @@ const ShowRecipe = ({ recipeData, setShowFullRecipe, getRecipes }) => {
         onClick={changeItem}
         pageCount={1}
       />
-      <Grid
-        container
-        md={12}
-        sx={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <Grid item md={5.8} sm={12}>
+      <div className="takeout-wrapper">
+        <div>
           <div className="recipe-title-con">
             <p>Take Out Add Ons</p>
             <ControlPointIcon
@@ -265,15 +261,16 @@ const ShowRecipe = ({ recipeData, setShowFullRecipe, getRecipes }) => {
               sx={{ cursor: "pointer", ml: 2 }}
             />
           </div>
-
-          <MuiTable
-            columnsList={recipeItemHeaderConfig()}
-            dataList={tableData?.takeOutAddOns || []}
-            onClick={changeTakeOutItem}
-            pageCount={1}
-          />
-        </Grid>
-        <Grid md={5.8} item sm={12}>
+          <div>
+            <MuiTable
+              columnsList={recipeItemHeaderConfig()}
+              dataList={tableData?.takeOutAddOns || []}
+              onClick={changeTakeOutItem}
+              pageCount={1}
+            />
+          </div>
+        </div>
+        <div>
           <div className="recipe-title-con">
             <p>Delivery Add Ons</p>
             <ControlPointIcon
@@ -290,9 +287,8 @@ const ShowRecipe = ({ recipeData, setShowFullRecipe, getRecipes }) => {
             onClick={changeDeliveryItem}
             pageCount={1}
           />
-        </Grid>
-      </Grid>
-
+        </div>
+      </div>
       <div>
         <Button
           variant="contained"

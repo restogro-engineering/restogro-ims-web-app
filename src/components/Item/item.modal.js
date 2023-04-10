@@ -25,7 +25,7 @@ export const ItemModal = ({
   const [itemData, setItemData] = useState({});
   const [categoryList, setCategoryList] = useState([]);
   const [unitList, setUnitsList] = useState([]);
-  const screenWidth = useScreenWidth()
+  const screenWidth = useScreenWidth();
 
   // When we are updating an item we get data from props and we set it
   useEffect(() => {
@@ -51,18 +51,9 @@ export const ItemModal = ({
   return (
     <>
       {showModal && (
-        <CustomModal
-          title={title}
-          contentClassName={{
-            // headerBackgroundColor: "#008952",
-            customClass: `${
-              customModalContentClass ? customModalContentClass : ""
-            }`,
-          }}
-          onClose={closeModal}
-        >
+        <CustomModal title={title} onClose={closeModal}>
           <Grid md={12} container spacing={2}>
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+            <Grid xs={screenWidth < 500 ? 12 : 6} md={6} item>
               <TextField
                 label="Code"
                 size="small"
@@ -72,7 +63,7 @@ export const ItemModal = ({
                 onChange={settItemDateOnChange}
               />
             </Grid>
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+            <Grid xs={screenWidth < 500 ? 12 : 6} md={6} item>
               <TextField
                 label="Name"
                 size="small"
@@ -83,7 +74,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+            <Grid xs={screenWidth < 500 ? 12 : 6} md={6} item>
               <TextField
                 label="Minimum Stock"
                 size="small"
@@ -96,7 +87,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+            <Grid xs={screenWidth < 500 ? 12 : 6} md={6} item>
               <TextField
                 label="Base Unit"
                 size="small"
@@ -107,7 +98,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+            <Grid xs={screenWidth < 500 ? 12 : 6} md={6} item>
               <TextField
                 label="Supply Price"
                 size="small"
@@ -120,7 +111,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+            <Grid xs={screenWidth < 500 ? 12 : 6} md={6} item>
               <p className="select-label">Custom Unit</p>
 
               <Select
@@ -144,7 +135,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+            <Grid xs={screenWidth < 500 ? 12 : 6} md={6} item>
               <p className="select-label">Category</p>
 
               <Select
@@ -169,7 +160,7 @@ export const ItemModal = ({
               />
             </Grid>
 
-            <Grid xs={screenWidth < 500? 12:6} md={6} item>
+            <Grid xs={screenWidth < 500 ? 12 : 6} md={6} item>
               <p className="select-label">Sub Category</p>
 
               <Select

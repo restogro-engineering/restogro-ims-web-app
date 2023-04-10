@@ -126,8 +126,8 @@ const Unit = () => {
           title={edit?.isEdit ? "Edit Unit" : "Create Unit"}
           onClose={closeModalHandler}
         >
-          <Grid md={12} container spacing={2} sx={{ width: "30rem" }}>
-            <Grid md={12} item>
+          <Grid md={12} container spacing={2}>
+            <Grid md={12} item xs={12}>
               <TextField
                 label="Name"
                 size="small"
@@ -142,7 +142,7 @@ const Unit = () => {
               />
             </Grid>
 
-            <Grid md={12} item>
+            <Grid md={12} item xs={12}>
               <TextField
                 label="Conversion Factor"
                 size="small"
@@ -157,7 +157,7 @@ const Unit = () => {
                 }}
               />
             </Grid>
-            <Grid md={12} item>
+            <Grid md={12} item xs={12}>
               <Select
                 placeholder="Select Base Unit"
                 options={BASE_UNITS}

@@ -32,7 +32,7 @@ const Category = () => {
         const result = res.results.map((ele) => ({
           ...ele,
           createdBy: ele?.account?.name,
-          parentCategory: ele?.parent ? ele?.parent?.name : "None",
+          parentCategory: ele?.parent ? ele?.parent?.name : "-",
         }));
         setTableData({ ...res, results: result });
       }
@@ -136,7 +136,7 @@ const Category = () => {
           onClose={closeModalHandler}
         >
           <Grid md={12} container spacing={2}>
-            <Grid md={12} item>
+            <Grid md={12} item xs={12}>
               <TextField
                 label="Category Name"
                 size="small"
@@ -150,7 +150,7 @@ const Category = () => {
                 }}
               />
             </Grid>
-            <Grid md={12} item>
+            <Grid md={12} item xs={12}>
               <Select
                 placeholder="Select Parent Category"
                 options={parentCategoryList}

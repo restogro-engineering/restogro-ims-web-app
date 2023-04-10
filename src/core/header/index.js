@@ -50,7 +50,7 @@ const Header = () => {
       </div>
       <div className="endLoginContainer">
         <div className="menu">
-          <Avatar>
+          <Avatar className="si-hide-mobile">
             <AccountCircleIcon />
           </Avatar>
           <Button
