@@ -51,7 +51,10 @@ export const Login = () => {
   return (
     <div className="login-container">
       <div className="left">
-        <img src={require("../../resources/images/logo.png")} />
+        <img
+          src={require("../../resources/images/logo.png")}
+          className="logo-img"
+        />
       </div>
       <div className="right">
         <div className="login-form">

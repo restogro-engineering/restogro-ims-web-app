@@ -1,7 +1,11 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 .recipe-container {
   margin-right: 2rem;
   margin-left: 2rem;
+  @include respond-to("small") {
+    margin: 0px;
+  }
   .r-header {
     display: flex;
     justify-content: space-between;
@@ -21,11 +25,19 @@
       overflow: hidden;
       cursor: pointer;
       transition: all 0.5s ease;
+      @include respond-to("small") {
+        height: 10rem;
+        padding: 0.5rem;
+      }
       .title {
         font-size: large;
         font-weight: bold;
         margin-left: auto;
         margin-right: auto;
+        @include respond-to("small") {
+          margin: 0px;
+          align-self: center;
+        }
       }
     }
     .recipe-card:hover {
@@ -40,11 +52,23 @@
     align-items: center;
     height: 2rem;
   }
+  .takeout-wrapper {
+    @include respond-to("large") {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
   .m-b {
     margin-bottom: 1rem;
   }
 
   .btn-con {
     display: flex;
+  }
+}
+.add-item-con {
+  @include respond-to("small") {
+    max-width: 20em;
   }
 }

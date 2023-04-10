@@ -9,7 +9,7 @@ const RecipeCardTable = ({ data, pageChange, recipeDetails }) => {
   return (
     <div>
       <div>
-        <Grid container md={12} spacing={3}>
+        <Grid container md={12} spacing={3} sx={{ mt: "0.5px" }}>
           {data?.results?.map((ele) => {
             return (
               <Grid item md={3} xs={12} className="recipe-card-container">

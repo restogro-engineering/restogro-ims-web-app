@@ -42,18 +42,9 @@ export const VendorModal = ({
   return (
     <>
       {showModal && (
-        <CustomModal
-          title={title}
-          contentClassName={{
-            // headerBackgroundColor: "#008952",
-            customClass: `${
-              customModalContentClass ? customModalContentClass : ""
-            }`,
-          }}
-          onClose={closeModal}
-        >
+        <CustomModal title={title} onClose={closeModal}>
           <Grid md={12} container spacing={2}>
-            <Grid md={12} item>
+            <Grid md={12} item xs={12}>
               <TextField
                 label="Name*"
                 size="small"
@@ -64,7 +55,7 @@ export const VendorModal = ({
               />
             </Grid>
 
-            <Grid md={12} item>
+            <Grid md={12} item xs={12}>
               <TextField
                 label="Email *"
                 size="small"
@@ -75,7 +66,7 @@ export const VendorModal = ({
               />
             </Grid>
 
-            <Grid md={12} item>
+            <Grid md={12} item xs={12}>
               <TextField
                 label=" GST Number *"
                 size="small"

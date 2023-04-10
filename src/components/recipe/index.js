@@ -46,11 +46,27 @@ const Recipe = () => {
     <div className="recipe-container">
       {!createNewRecipe && !showFullRecipe?.isShow && (
         <div className="r-header">
-          <h2>List Of Recipes</h2>
+          <h2 className="si-hide-mobile">List Of Recipes</h2>
           <Button
             variant="contained"
-            onClick={() => setCreateNewRecipe(true)}
+            onClick={() => {
+              setCreateNewRecipe(true);
+              setShowFullRecipe(false);
+            }}
+            className="si-hide-mobile"
             sx={{ float: "right", mb: 0.5, mr: 2.5 }}
+          >
+            Add New Recipe
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              setCreateNewRecipe(true);
+              setShowFullRecipe(false);
+            }}
+            size="small"
+            className="si-hide-web"
+            sx={{ margin: "auto" }}
           >
             Add New Recipe
           </Button>

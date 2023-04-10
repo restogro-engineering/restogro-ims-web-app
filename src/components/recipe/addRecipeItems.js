@@ -191,24 +191,24 @@ const AddRecipeItems = ({
     }
   }, [allItemsList]);
   return (
-    <div>
+    <div className="add-item-con">
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Item</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Unit</TableCell>
-            <TableCell>Quantity</TableCell>
-            <TableCell>Add Item</TableCell>
+            <TableCell padding="2px">Item</TableCell>
+            <TableCell padding="2px">Price</TableCell>
+            <TableCell padding="2px">Unit</TableCell>
+            <TableCell padding="2px">Quantity</TableCell>
+            <TableCell padding="2px">Add Item</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {itemList.map((item) => (
             <TableRow key={item.id}>
-              <TableCell>{item?.name}</TableCell>
-              <TableCell>{item?.supplyPrice}</TableCell>
-              <TableCell>{item?.customUnit?.name}</TableCell>
-              <TableCell>
+              <TableCell padding="2px">{item?.name}</TableCell>
+              <TableCell padding="2px">{item?.supplyPrice}</TableCell>
+              <TableCell padding="2px">{item?.customUnit?.name}</TableCell>
+              <TableCell padding="2px">
                 <TextField
                   type="number"
                   size="small"
@@ -219,7 +219,7 @@ const AddRecipeItems = ({
                   }
                 />
               </TableCell>
-              <TableCell>
+              <TableCell padding="2px">
                 <Checkbox
                   onChange={(e) =>
                     handleCheckboxChange(item.id, e.target.checked)
@@ -233,6 +233,7 @@ const AddRecipeItems = ({
       <Button
         variant="contained"
         onClick={addItemHandler}
+        size="small"
         sx={{ float: "right", mt: 2, mr: 1 }}
       >
         Save
