@@ -26,7 +26,6 @@ export const createPurchaseOrderItemsConfig = () => {
                   type="number"
                   size="small"
                   fullWidth
-                  helperText="Item count cannot be less than 1"
                   onChange={(e) => {
                     onClick(
                       data,
@@ -46,6 +45,18 @@ export const createPurchaseOrderItemsConfig = () => {
     {
       label: "Unit Price",
       id: "pricePerBaseUnit",
+      render: (data, _, index) => {
+        const value = parseFloat(data?.pricePerBaseUnit);
+        return (
+          <span key={index}>
+            {[null, undefined, NaN].includes(value )
+              ? "-"
+              :
+              (Math.round(value * 100) / 100).toFixed(2)
+              }
+          </span>
+        );
+      },
     },
     {
       label: "Total",
@@ -54,7 +65,7 @@ export const createPurchaseOrderItemsConfig = () => {
         const value = data?.quantity * data?.pricePerBaseUnit;
         return (
           <span className="si-cell" key={data.id}>
-            {value === 0 || value ? value : ""}
+            {value === 0 || value ? (Math.round(value * 100) / 100).toFixed(2) : "-"}
           </span>
         );
       },
@@ -117,7 +128,7 @@ export const viewItemsConfig = () => {
             {(data?.quantity || data?.quantity === 0) &&
             (data?.pricePerBaseUnit || data?.pricePerBaseUnit === 0)
               ? data?.quantity * data?.pricePerBaseUnit
-              : ""}
+              : "-"}
           </span>
         );
       },

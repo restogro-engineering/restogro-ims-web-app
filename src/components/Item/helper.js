@@ -19,9 +19,10 @@ export const getHeaderConfig = () => {
       label: "Category",
       id: "category",
       render: (data, _, index) => {
+        const value = data?.category?.name;
         return (
           <span className="si-cell" key={index}>
-            {data?.category?.name}
+            {[null, undefined, NaN].includes(value) ? "-" : value}
           </span>
         );
       },
@@ -30,9 +31,10 @@ export const getHeaderConfig = () => {
       label: "Sub Category",
       id: "subcategory",
       render: (data, _, index) => {
+        const value = data?.subCategory?.name;
         return (
           <span className="si-cell" key={index}>
-            {data?.subCategory?.name}
+            {[null, undefined, NaN].includes(value) ? "-" : value}
           </span>
         );
       },
@@ -49,9 +51,10 @@ export const getHeaderConfig = () => {
       label: "Custom Unit",
       id: "customUnit",
       render: (data, _, index) => {
+        const value = data?.customUnit?.name;
         return (
-          <span className="si-cell" key={index}>
-            {data?.customUnit?.name}
+          <span key={index}>
+            {[null, undefined, NaN].includes(value) ? "-" : value}
           </span>
         );
       },
@@ -63,6 +66,18 @@ export const getHeaderConfig = () => {
     {
       label: "Price Per Base Unit",
       id: "pricePerBaseUnit",
+      render: (data, _, index) => {
+        const value = parseFloat(data?.pricePerBaseUnit);
+        return (
+          <span key={index}>
+            {[null, undefined, NaN].includes(value )
+              ? "-"
+              :
+              (Math.round(value * 100) / 100).toFixed(2)
+              }
+          </span>
+        );
+      },
     },
     {
       label: "Actions",

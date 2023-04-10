@@ -61,7 +61,6 @@ export const VendorModal = ({
                 fullWidth
                 onChange={setVendorDataOnChange}
                 value={vendorData.name}
-                placeholder="Name"
               />
             </Grid>
 
@@ -73,7 +72,6 @@ export const VendorModal = ({
                 fullWidth
                 onChange={setVendorDataOnChange}
                 value={vendorData.email}
-                placeholder="Email"
               />
             </Grid>
 
@@ -85,7 +83,6 @@ export const VendorModal = ({
                 fullWidth
                 onChange={setVendorDataOnChange}
                 value={vendorData.gstNo}
-                placeholder=" GST Number"
               />
             </Grid>
 
@@ -114,7 +111,7 @@ export const VendorModal = ({
                   createOrUpdateVendor(vendorData, onSuccess);
                 }}
               >
-                {vendorData?.id ? "Update" : "Create"}
+                Save
               </Button>
             </Grid>
           </Grid>

@@ -45,7 +45,7 @@
   }
   .custom-modal-container .modal-content {
     max-height: 95vh;
-    // overflow-y: scroll;
+    overflow-y: scroll;
   }
   .select-container {
     display: grid;
@@ -57,5 +57,10 @@
   }
   .select-label {
     margin: 0px;
+  }
+  @media only screen and (min-width: 500px) and (max-width: 900px) {
+    .select-level-margin {
+      margin-top: 23px;
+    }
   }
 }

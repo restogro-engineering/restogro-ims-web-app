@@ -12,6 +12,7 @@ import { createPurchaseOrderItemsConfig } from "./config";
 import { disableSaveButton } from "./helper-2";
 import Checkbox from "@mui/material/Checkbox";
 import MuiTable from "../../../core/mui-table";
+import useScreenWidth from "../../../Hooks/useScreenWidth";
 
 export const CreatePurchaseOrderModal = ({
   showModal,
@@ -24,6 +25,7 @@ export const CreatePurchaseOrderModal = ({
   const [categoryList, setCategoriesList] = useState([]);
   const [itemsPage, setItemsPage] = useState(1);
   const [refresh, setRefresh] = useState("");
+  const screenWidth = useScreenWidth();
 
   const clearData = () => {
     setModalDetails({});
@@ -69,7 +71,11 @@ export const CreatePurchaseOrderModal = ({
           onClose={closeModal}
         >
           <Grid md={12} container spacing={2}>
-            <Grid md={4} item>
+            <Grid
+              xs={screenWidth > 900 ? 4 : screenWidth < 500 ? 12 : 6}
+              md={4}
+              item
+            >
               <p className="select-label">
                 Vendor <span className="warning">*</span>
               </p>
@@ -95,7 +101,11 @@ export const CreatePurchaseOrderModal = ({
                 }}
               />
             </Grid>
-            <Grid md={4} item>
+            <Grid
+              item
+              xs={screenWidth > 900 ? 4 : screenWidth < 500 ? 12 : 6}
+              md={4}
+            >
               <p className="select-label">
                 Categories <span className="warning">*</span>
               </p>
@@ -116,7 +126,11 @@ export const CreatePurchaseOrderModal = ({
                 }}
               />
             </Grid>
-            <Grid md={4} item>
+            <Grid
+              xs={screenWidth > 900 ? 4 : screenWidth < 500 ? 12 : 6}
+              md={4}
+              item
+            >
               <p className="select-label">
                 Items <span className="warning">*</span>
               </p>
@@ -139,11 +153,16 @@ export const CreatePurchaseOrderModal = ({
                 />
               )}
             </Grid>
-            <Grid md={4} item>
+            <Grid
+              xs={screenWidth > 900 ? 4 : screenWidth < 500 ? 12 : 6}
+              md={4}
+              item
+            >
               <TextField
                 label="Date"
                 size="small"
                 disabled={true}
+                className="select-level-margin"
                 fullWidth
                 value={formatDate(
                   new Date().toISOString(),
@@ -152,7 +171,11 @@ export const CreatePurchaseOrderModal = ({
                 placeholder="Date"
               />
             </Grid>
-            <Grid md={4} item>
+            <Grid
+              xs={screenWidth > 900 ? 4 : screenWidth < 500 ? 12 : 6}
+              md={4}
+              item
+            >
               <TextField
                 label="PO Number *"
                 size="small"
@@ -160,11 +183,14 @@ export const CreatePurchaseOrderModal = ({
                 fullWidth
                 value={modalDetails.poNumber}
                 onChange={setModalDetailsOnChange}
-                placeholder="PO Number"
               />
             </Grid>
 
-            <Grid md={4} item>
+            <Grid
+              xs={screenWidth > 900 ? 4 : screenWidth < 500 ? 12 : 6}
+              md={4}
+              item
+            >
               <TextField
                 label="PR Number *"
                 size="small"
@@ -172,10 +198,13 @@ export const CreatePurchaseOrderModal = ({
                 fullWidth
                 value={modalDetails.prNumber}
                 onChange={setModalDetailsOnChange}
-                placeholder="PR Number"
               />
             </Grid>
-            <Grid md={4} item>
+            <Grid
+              xs={screenWidth > 900 ? 4 : screenWidth < 500 ? 12 : 6}
+              md={4}
+              item
+            >
               <p className="select-label">
                 Store <span className="warning">*</span>
               </p>
@@ -202,7 +231,11 @@ export const CreatePurchaseOrderModal = ({
               />
             </Grid>
 
-            <Grid md={4} item>
+            <Grid
+              xs={screenWidth > 900 ? 4 : screenWidth < 500 ? 12 : 6}
+              md={4}
+              item
+            >
               <p></p>
               <FormControlLabel
                 value="end"
@@ -257,6 +290,7 @@ export const CreatePurchaseOrderModal = ({
                   onChange={(page) => {
                     setItemsPage(page);
                   }}
+                  defaultEmptyChar="-"
                 />
               </div>
             </Grid>
@@ -287,7 +321,7 @@ export const CreatePurchaseOrderModal = ({
                 createPurchaseOrder(modalDetails, onSuccess);
               }}
             >
-              Create
+              Save
             </Button>
           </Grid>
         </CustomModal>

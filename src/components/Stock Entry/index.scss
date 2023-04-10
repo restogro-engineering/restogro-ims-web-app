@@ -4,13 +4,33 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-   
+    gap: 20px;
+
     .header-filter-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       column-gap: 20px;
     }
+  }
+  @media only screen and (max-width: 540px) {
+    .header-filter {
+      display: grid;
+      row-gap: 20px;
+    }
+    .apply-button-container {
+      display: flex;
+      justify-content: end;
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    .header-filter {
+      .header-filter-options {
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+      }
+    }
+    
   }
   .stock-entry-table {
     position: relative;
@@ -25,5 +45,8 @@
   .edit-icon {
     display: flex;
     justify-content: center;
+  }
+  .custom-modal-container .modal-content {
+    overflow-y: scroll;
   }
 }

@@ -25,6 +25,7 @@ export const ViewItemsModal = ({ showModal, closeModal, data }) => {
             onChange={( page) => {
               setPage(page);
             }}
+            defaultEmptyChar="-"
           />
         </CustomModal>
       )}

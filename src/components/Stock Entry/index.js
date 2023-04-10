@@ -80,7 +80,7 @@ export const StockEntry = () => {
             }}
           />
         </div>
-        <div>
+        <div className="apply-button-container">
           <Button
             variant="outlined"
             disabled={!filters?.hasOwnProperty("store")}
@@ -133,6 +133,7 @@ export const StockEntry = () => {
           );
           closeModal();
         }}
+        defaultEmptyChar="-"
         data={modalDetails?.data}
       />
     </div>

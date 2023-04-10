@@ -5,7 +5,7 @@ import { HTTP_METHODS, invokeApi } from "../../utils/http-service";
 import { HOSTNAME } from "../../utils/endpoints";
 import { REST_URLS } from "../../utils/endpoints";
 import { toast } from "react-toastify";
-import { getHeaderConfig } from "./helper";
+import { getHeaderConfig,  } from "./helper";
 import { ItemModal } from "./item.modal";
 import MuiTable from "../../core/mui-table";
 
@@ -90,20 +90,20 @@ const Item = () => {
             page,
           });
         }}
+        defaultEmptyChar="-"
       />
-
-      <ItemModal
-        title={modalDetails.title || ""}
-        closeModal={() => {
-          setModalDetails({});
-        }}
-        data={modalDetails.data || null}
-        showModal={modalDetails.showModal || false}
-        onSuccess={() => {
-          setModalDetails({});
-          getItemData(filters);
-        }}
-      />
+        <ItemModal
+          title={modalDetails.title || ""}
+          closeModal={() => {
+            setModalDetails({});
+          }}
+          data={modalDetails.data || null}
+          showModal={modalDetails.showModal || false}
+          onSuccess={() => {
+            setModalDetails({});
+            getItemData(filters);
+          }}
+        />
     </div>
   );
 };
