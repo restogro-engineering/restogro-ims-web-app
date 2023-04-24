@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
 import "./index.scss";
 import { invokeApi, HTTP_METHODS } from "../../utils/http-service";
-import { HOSTNAME, REST_URLS } from "../../utils/endpoints";
+import { CORE_HOST_NAME, HOSTNAME, REST_URLS } from "../../utils/endpoints";
 import { setOfflineData, getOfflineData } from "../../utils/offline-services";
 import { toast } from "react-toastify";
 
@@ -30,7 +30,7 @@ export const Login = () => {
       password: loginDetails.password,
     };
 
-    invokeApi(HTTP_METHODS.POST, `${HOSTNAME}${REST_URLS.LOGIN}`, payload).then(
+    invokeApi(HTTP_METHODS.POST, `${CORE_HOST_NAME}${REST_URLS.LOGIN}`, payload).then(
       (response) => {
         if (response.message) {
           toast.error(response.message, { autoClose: 2000 });

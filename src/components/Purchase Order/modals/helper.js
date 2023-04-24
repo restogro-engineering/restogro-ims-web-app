@@ -94,7 +94,10 @@ export const setCreateModalDetailsOnChange = (
             {
               const curLastPage = Math.ceil(itemList.length / 2);
               const newLastPage = Math.ceil(e.length / 2);
-              if (newLastPage < curLastPage && itemsPage === curLastPage) {
+              if (
+                itemsPage == 0 ||
+                (newLastPage < curLastPage && itemsPage === curLastPage)
+              ) {
                 setItemsPage(newLastPage);
               }
             }

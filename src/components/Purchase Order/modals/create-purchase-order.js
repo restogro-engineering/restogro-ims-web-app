@@ -6,13 +6,14 @@ import Select from "react-select";
 import { createPurchaseOrder, getVendorList } from "./apis";
 import { actionHandler, setCreateModalDetailsOnChange } from "./helper";
 import { formatDate } from "../../../utils";
-import { DATE_FORMATS, dummyStoreOptions } from "../../../utils/constants";
+import { DATE_FORMATS } from "../../../utils/constants";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { createPurchaseOrderItemsConfig } from "./config";
 import { disableSaveButton } from "./helper-2";
 import Checkbox from "@mui/material/Checkbox";
 import MuiTable from "../../../core/mui-table";
 import useScreenWidth from "../../../Hooks/useScreenWidth";
+import { getStoreSelectList } from "../../../utils/store";
 
 export const CreatePurchaseOrderModal = ({
   showModal,
@@ -23,6 +24,7 @@ export const CreatePurchaseOrderModal = ({
   const [vendorList, setVendorList] = useState([]);
   const [itemList, setItemList] = useState([]);
   const [categoryList, setCategoriesList] = useState([]);
+  const [storeOptions, setStoreOptions] = useState([]);
   const [itemsPage, setItemsPage] = useState(1);
   const [refresh, setRefresh] = useState("");
   const screenWidth = useScreenWidth();
@@ -37,7 +39,12 @@ export const CreatePurchaseOrderModal = ({
   useEffect(() => {
     if (!showModal) {
       clearData();
+      return;
     }
+    (async () => {
+      const finalStoreList = await getStoreSelectList();
+      setStoreOptions(finalStoreList);
+    })();
   }, [showModal]);
 
   useEffect(() => {
@@ -210,14 +217,14 @@ export const CreatePurchaseOrderModal = ({
               </p>
               <Select
                 placeholder="Select Store"
-                options={dummyStoreOptions}
+                options={storeOptions}
                 name="store"
                 onChange={(e, details) => {
                   setModalDetailsOnChange(e, "select", details);
                 }}
                 value={
                   ![null, undefined].includes(modalDetails.store)
-                    ? dummyStoreOptions.find(
+                    ? storeOptions.find(
                         (ele) => ele.value === modalDetails.store
                       )
                     : null
