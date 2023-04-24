@@ -2,17 +2,18 @@ import { useEffect, useState } from "react";
 import "./index.scss";
 import { getItemsList, queryStocketEntry } from "./apis";
 import Select from "react-select";
-import { dummyStoreOptions } from "../../utils/constants";
 import { Button } from "@mui/material";
 import { getHeaderConfig } from "./config";
 import { actionHandler } from "./helper";
 import { StockEntryUpdationModal } from "./modal";
 import MuiTable from "../../core/mui-table";
+import { getStoreSelectList } from "../../utils/store";
 
 export const StockEntry = () => {
   const [itemList, setItemList] = useState([]);
   const [tableData, setTableData] = useState({});
   const [modalDetails, setModalDetails] = useState({});
+  const [storeOptions, setStoreOptions] = useState([])
   const [filtersAfterClickingOnApplyButton, setFiltersAfterClickingOnApply] =
     useState({
       page: 1,
@@ -28,6 +29,10 @@ export const StockEntry = () => {
 
   useEffect(() => {
     getItemsList(setItemList);
+    (async() => {
+      const storeOptionList = await getStoreSelectList()
+      setStoreOptions(storeOptionList)
+    })()
   }, []);
 
   const handler = (data, type) => {
@@ -44,7 +49,7 @@ export const StockEntry = () => {
         <div className="header-filter-options">
           <Select
             placeholder="Select Store"
-            options={dummyStoreOptions}
+            options={storeOptions}
             onChange={(e) => {
               setFilters((prevFilters) => ({
                 ...prevFilters,
@@ -53,7 +58,7 @@ export const StockEntry = () => {
             }}
             value={
               ![null, undefined].includes(filters.store)
-                ? dummyStoreOptions.find((ele) => ele.value === filters.store)
+                ? storeOptions.find((ele) => ele.value === filters.store)
                 : null
             }
             styles={{
