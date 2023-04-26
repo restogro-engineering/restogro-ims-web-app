@@ -16,6 +16,14 @@ export const HTTP_METHODS = {
   PATCH: "PATCH",
 };
 
+const clearDataAndRedirect = () => {
+  clearOfflineData("user");
+  clearOfflineData("tokens");
+  setTimeout(() => {
+    window.location = window.location.origin + "/login";
+  }, 1000);
+}
+
 const getToken = async () => {
   let tokens = getOfflineData("tokens");
   if (tokens === "") {
@@ -49,22 +57,14 @@ const getRefreshToken = async (refreshToken) => {
     const tokens = await response.json();
     if (tokens.code === 401 || tokens.code) {
       // toast.error("Token expired", { autoClose: 1000 });
-      clearOfflineData("user");
-      clearOfflineData("tokens");
-      setTimeout(() => {
-        window.location = window.location.origin + "/login";
-      }, 1000);
+     clearDataAndRedirect()
     } else {
       setOfflineData("tokens", tokens);
     }
     return tokens.access.token || "";
   } catch (error) {
     // toast.error("Token expired", { autoClose: 1000 });
-    clearOfflineData("user");
-    clearOfflineData("tokens");
-    setTimeout(() => {
-      window.location = window.location.origin + "/login";
-    }, 1000);
+    clearDataAndRedirect()
     return "";
   }
 };
@@ -90,12 +90,7 @@ export const invokeApi = async (method, url, data, params) => {
       params: params,
     }).then((response) => {
       if (response.status === 401 && url !== `${HOSTNAME}${REST_URLS.LOGIN}`) {
-        // toast.error("Token expired", { autoClose: 1000 });
-        clearOfflineData("user");
-        clearOfflineData("tokens");
-        setTimeout(() => {
-          window.location = window.location.origin + "/login";
-        }, 1000);
+        clearDataAndRedirect()
         return "";
       }
 

@@ -1,6 +1,7 @@
 const service = "/v1/";
+const coreService = "/v1/"
 export const REST_URLS = {
-  LOGIN: `${service}auth/login`,
+  LOGIN: `${coreService}auth/ims/login`,
   LOGOUT: `${service}auth/logout`,
   REGISTER: `${service}auth/register`,
   REFRESH_TOKEN: `${service}auth/refresh-tokens`,
@@ -27,6 +28,7 @@ export const REST_URLS = {
   QUERY_STOCK_ENTRY: `${service}stock/`,
   UPDATE_STOCK_ENTRY: `${service}stock/update-stock/`,
   ITEM_LIST_BY_ACCOUNT: `${service}item/list-by-account`,
+  STORE_LIST:`${service}store/store-list`
 };
 
 // export const HOSTNAME = "https://dev-api.mysubway.in";
