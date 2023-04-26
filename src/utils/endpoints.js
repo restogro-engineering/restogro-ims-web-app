@@ -30,4 +30,8 @@ export const REST_URLS = {
 };
 
 // export const HOSTNAME = "https://dev-api.mysubway.in";
-export const HOSTNAME = "http://localhost:4000";
+// export const HOSTNAME = "http://localhost:4000";
+// export const CORE_HOST_NAME = "http://localhost:5000"
+
+export const HOSTNAME = "http://35.154.230.30:3002";
+export const CORE_HOST_NAME = "http://35.154.230.30:3001"
