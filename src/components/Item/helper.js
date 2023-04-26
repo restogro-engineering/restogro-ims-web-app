@@ -112,8 +112,8 @@ export const createOrUpdateItem = (data, onSuccess) => {
     ? `${REST_URLS.UPDATE_ITEM}${itemId}`
     : REST_URLS.CREATE_ITEM;
   const message = itemId
-    ? "Item created successfully"
-    : "Item Updated Successfully";
+    ? "Item Updated successfully"
+    : "Item created Successfully";
 
   invokeApi(method, `${HOSTNAME}${url}`, data)
     .then((res) => {

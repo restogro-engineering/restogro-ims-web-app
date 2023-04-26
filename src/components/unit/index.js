@@ -102,7 +102,7 @@ const Unit = () => {
           setIsCreateModalOpen(true);
         }}
       >
-        Craete Custom Unit
+        Create Custom Unit
       </Button>
       <MuiTable
         columnsList={getHeaderConfig()}

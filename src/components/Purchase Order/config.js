@@ -26,6 +26,13 @@ export const getHeaderConfig = () => {
     {
       label: "Store",
       id: "store",
+      render: (data, _, index) => {
+        return (
+          <span className="si-cell" key={data?.id}>
+            {data?.store?.name || typeof data?.store !== "object" && data?.store}
+          </span>
+        );
+      },
     },
     {
       label: "Is Delivery Address Deployment Address",
